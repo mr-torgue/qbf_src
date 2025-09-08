@@ -1,8 +1,13 @@
 FROM ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=nointeractive
+
+ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/lib/x86_64-linux-gnu/:${LD_LIBRARY_PATH}
+#ENV LIBRARY_PATH=/usr/local/lib64:/usr/lib/x86_64-linux-gnu/:${LIBRARY_PATH}
+
 RUN apt update 
 RUN apt upgrade -y
-#RUN DEBIAN_FRONTEND="noninteractive" apt install ssh vim iputils-ping iptables iproute2 curl git pkg-config autoconf automake build-essential libnghttp2-dev libtool libtool-bin libuv1-dev libcap-dev astyle cmake gcc ninja-build unzip -y
-RUN DEBIAN_FRONTEND="noninteractive" apt install ssh curl cmake gcc pkg-config autoconf automake git build-essential ninja-build libnghttp2-dev libcap-dev libtool libtool-bin libuv1-dev unzip iputils-ping iptables iproute2 liburcu-dev -y
+RUN apt install ssh curl cmake gcc pkg-config autoconf automake git build-essential ninja-build libnghttp2-dev libcap-dev libtool libtool-bin libuv1-dev unzip iputils-ping iptables iproute2 liburcu-dev net-tools -y
 WORKDIR /
 # Install OpenSSL 3.2.5
 RUN curl -L -O https://github.com/openssl/openssl/releases/download/openssl-3.2.5/openssl-3.2.5.tar.gz
@@ -12,6 +17,10 @@ WORKDIR openssl-3.2.5
 RUN ./Configure
 RUN make
 RUN make install
+#RUN echo 'export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+#RUN source ~/.bashrc
+RUN sed -i 's/default = default_sect/default = default_sect\noqsprovider = oqsprovider_sect/' /usr/local/ssl/openssl.cnf
+RUN echo -e "[oqsprovider_sect]\nactivate = 1" >> /usr/local/ssl/openssl.cnf
 RUN ln -s /usr/local/lib64/libcrypto.so /usr/lib/x86_64-linux-gnu/libcrypto.so
 # Install liboqs 0.14.0
 WORKDIR /

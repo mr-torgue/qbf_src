@@ -15,6 +15,6 @@ fi
 
 cd $BUILDDIR
 docker compose down
-docker compose build
+docker compose build --no-cache
 cd $WORKINGDIR
-./run_exps.bash 0 10 # 10 queries
+#./run_exps.bash 0 10 # 10 queries

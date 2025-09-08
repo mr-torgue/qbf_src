@@ -1783,9 +1783,6 @@ int main(int argc, char **argv) {
             i++;
             MAXUDP = atoi(argv[i]);
             printf("Using maxudp: %u\n", MAXUDP);
-        } else if (strcmp(argv[i], "--debug") ) {
-            debug = true;
-            printf("Enabling debugging...")
         } else if (strcmp(argv[i], "--algorithm") == 0) {
             i++;
             printf("Using algorithm: %s\n", argv[i]);
