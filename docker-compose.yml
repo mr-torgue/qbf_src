@@ -20,6 +20,7 @@ networks:
 services:
     client1:
         build: client1/
+        image: ba164df428b7
         stdin_open: true
         privileged: true
         tty: true

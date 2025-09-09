@@ -6,6 +6,7 @@ cp /named.conf /usr/local/etc/
 ldconfig
 
 ALG=FALCON512
+LISTENIP=172.20.0.3
 
 
 rm -rf *.key
@@ -18,7 +19,6 @@ dnssec-signzone -o example -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.ex
 
 iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
 iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
-ifconfig 
-/qbf/daemon ${LISTENIP} --algorithm $ALG --maxudp 1232 --debug & 
-named -d 3
-/bin/bash
+ifconfig
+/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
+named -g -d 3

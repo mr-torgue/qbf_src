@@ -1767,7 +1767,7 @@ void refresh_state(void) {
 
 int main(int argc, char **argv) {
     char *ipaddr;
-    if (argc < 2 || argc > 9) {
+    if (argc < 2 || argc > 11) {
         printf("\nWrong number of arguments: %d\n", argc);
         return -1;
     }

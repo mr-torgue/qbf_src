@@ -6,6 +6,7 @@ cp /named.conf /usr/local/etc/
 ldconfig
 
 ALG=FALCON512
+LISTENIP=172.20.0.3
 
 # TODO: check if keys exist
 rm -rf /dsset/*
@@ -21,6 +22,5 @@ dnssec-signzone -o . -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.root;
 iptables -A INPUT -p ip -j NFQUEUE --queue-num 0
 iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
 ifconfig  
-/qbf/daemon ${LISTENIP} --maxudp 1232 --debug & 
-named -d 3
-/bin/bash
+/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
+named -g -d 3

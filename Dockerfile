@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
 
-ARG LISTENIP
 ARG DEBIAN_FRONTEND="noninteractive" 
 
 RUN apt update
@@ -52,4 +51,3 @@ COPY ./qbf-daemon/c-hashmap /qbf/c-hashmap
 COPY ./qbf-daemon/makefile /qbf/makefile
 WORKDIR /qbf
 RUN make daemon
-ENV LISTENIP=${LISTENIP}
