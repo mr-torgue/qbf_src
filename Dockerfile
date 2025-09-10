@@ -51,3 +51,4 @@ COPY ./qbf-daemon/c-hashmap /qbf/c-hashmap
 COPY ./qbf-daemon/makefile /qbf/makefile
 WORKDIR /qbf
 RUN make daemon
+RUN ldconfig 

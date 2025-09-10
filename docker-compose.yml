@@ -1,5 +1,3 @@
-version: "3.9"
-
 networks:
     internal_net:
         ipam:
@@ -20,7 +18,7 @@ networks:
 services:
     client1:
         build: client1/
-        image: ba164df428b7
+        image: oqs-bind
         stdin_open: true
         privileged: true
         tty: true
@@ -38,7 +36,7 @@ services:
             context: resolver/
             args:
                 LISTENIP: 172.20.0.2
-        image: ba164df428b7
+        image: oqs-bind
         entrypoint:
             - /init.bash
         stdin_open: true
@@ -60,7 +58,7 @@ services:
             context: ns1.root./
             args:
                 LISTENIP: 172.20.0.3
-        image: ba164df428b7
+        image: oqs-bind
         entrypoint:
             - /init.bash
         stdin_open: true
@@ -83,7 +81,7 @@ services:
             context: ns1.example./
             args:
                 LISTENIP: 172.20.0.4
-        image: ba164df428b7
+        image: oqs-bind
         entrypoint:
             - /init.bash
         stdin_open: true
