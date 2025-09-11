@@ -52,7 +52,7 @@ services:
             - ./bind-config/named-resolver.conf:/named.conf
             - ./bind-config/root.hints:/root.hints
         cap_add:
-           - CAP_NET_ADMIN
+           - NET_ADMIN
     ns1_root:
         build:
             context: ns1.root./
@@ -75,7 +75,7 @@ services:
             - ./bind-config/named-root.conf:/named.conf
             - ./scripts/init_root.bash:/init.bash
         cap_add:
-           - CAP_NET_ADMIN
+           - NET_ADMIN
     ns1_example:
         build:
             context: ns1.example./
@@ -98,6 +98,6 @@ services:
             - ./bind-config/named-example.conf:/named.conf
             - ./scripts/init_example.bash:/init.bash
         cap_add:
-           - CAP_NET_ADMIN
+           - NET_ADMIN
 volumes:
     dsset-volume:

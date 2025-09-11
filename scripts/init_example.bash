@@ -5,8 +5,8 @@ cp /db.example .
 cp /named.conf /usr/local/etc/
 ldconfig
 
-ALG=P256_FALCON512
-LISTENIP=172.20.0.3
+ALG=FALCON512
+LISTENIP=172.20.0.4
 
 
 rm -rf *.key
@@ -19,7 +19,7 @@ dnssec-signzone -o example -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.ex
 /move_ds.bash example. 
 
 iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
-#iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
+iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
 ifconfig
-/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug --bypass &
+gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 named -g -d 3

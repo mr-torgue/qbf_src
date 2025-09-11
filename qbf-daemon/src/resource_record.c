@@ -180,8 +180,8 @@ create_rr_f(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t 
     rr->ttl = ttl;
 
     if (rr->type == 46) {
-//        const char SIG_ALG = rdata[2];;
-        int SIG_SIZE = get_alg_sig_pk_size(rr->type, rdata);;
+//        const char SIG_ALG = rdata[2];
+        int SIG_SIZE = get_alg_sig_pk_size(rr->type, rdata);
         if (!((0 <= sig_start_idx) && (sig_start_idx <= sig_end_idx) && (sig_end_idx < SIG_SIZE))) {
             rr->rdsize = 0;
             *out = rr;
@@ -237,7 +237,7 @@ create_rr_f(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t 
         return 0;
 
     } else if (rr->type == 48) {
-//        const char PK_ALG = rdata[3];;
+//        const char PK_ALG = rdata[3];
         int PK_SIZE = get_alg_sig_pk_size(rr->type, rdata);
         if (!((0 <= pk_start_idx) && (pk_start_idx <= pk_end_idx) && (pk_end_idx < PK_SIZE))) {
             rr->rdsize = 0;
@@ -305,7 +305,7 @@ int calc_num_sig_bytes(uint16_t rdsize, unsigned char *rdata) {
 
 int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
     if (type == 46) {
-        const char SIG_ALG = rdata[2];;
+        const unsigned char SIG_ALG = rdata[2];
         int SIG_SIZE = 0;
 
         if (SIG_ALG == FALCON_512_ALG) {
@@ -317,10 +317,14 @@ int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
         } else if (SIG_ALG == SPHINCS_PLUS_SHA256_128S_ALG) {
             printf("\nSPHINCS_PLUS_SHA256_128S RRSIG RR Found.");
             SIG_SIZE = SPHINCS_PLUS_SHA256_128S_SIG_SIZE;
+        } else if (SIG_ALG == P256_FALCON_512_ALG) {
+            printf("\nP256_FALCON 512 RRSIG RR Found.");
+            SIG_SIZE = P256_FALCON_512_SIG_SIZE;
         }
+        printf("Cipher not supported (SIG)! rdata[2]: %d\n", SIG_ALG);
         return SIG_SIZE;
     } else if (type == 48) {
-        const char PK_ALG = rdata[3];;
+        const unsigned char PK_ALG = rdata[3];
         int PK_SIZE = 0;
 
         if (PK_ALG == FALCON_512_ALG) {
@@ -332,7 +336,11 @@ int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
         } else if (PK_ALG == SPHINCS_PLUS_SHA256_128S_ALG) {
             printf("\nSPHINCS_PLUS_SHA256_128S DNSKEY RR Found.");
             PK_SIZE = SPHINCS_PLUS_SHA256_128S_PK_SIZE;
+        } else if (PK_ALG == P256_FALCON_512_ALG) {
+            printf("\nP256_FALCON 512 DNSKEY RR Found.");
+            PK_SIZE = P256_FALCON_512_PK_SIZE;
         }
+        printf("Cipher not supported (PK)! rdata[2]: %d\n", PK_ALG);
         return PK_SIZE;
     }
     return -1;
