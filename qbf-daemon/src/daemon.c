@@ -1211,12 +1211,12 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                 // num_required_frags = 1 (original query) + num extra queries
 
                 if (MODE == 2) {
-                    if (ALG == 0) {
+                    if (ALG == 0) { // FALCON512
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 3;
                         else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
                             store->num_required_frags = 3;
-                    } else if (ALG == 1) {
+                    } else if (ALG == 1) { // DILITHIUM2
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 7;
                         else if (msg->question_section[0]->qtype == 1) {
@@ -1226,7 +1226,7 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                                 store->num_required_frags = 7;
                         } else
                             store->num_required_frags = 3;
-                    } else {
+                    } else if (ALG == 2) { // SPHINCS+
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 15;
                         else if (msg->question_section[0]->qtype == 1) {
@@ -1236,7 +1236,12 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                                 store->num_required_frags = 23;
                         } else
                             store->num_required_frags = 7;
-                    }
+                    } else if (ALG == 3) { // P256_FALCON512
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 3;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 3;
+                    } 
                     for (int i = 2; i <= store->num_required_frags; i++) {
                         clone_dnsmessage(msg, &(tosendPTR->m_arr[i]));
                         tosendPTR->m_arr[i]->question_section[0]->qname = qname_2_qnamef(
@@ -1795,8 +1800,12 @@ int main(int argc, char **argv) {
                 ALG = 1;
             else if (strcmp(argv[i], "SPHINCS+") == 0)
                 ALG = 2;
-            else if (strcmp(argv[i], "P256_FALCON_512") == 0)
+            else if (strcmp(argv[i], "P256_FALCON512") == 0)
                 ALG = 3;
+            else {
+                printf("Algorithm not supported!");
+                exit(0);
+            }
         } else if (strcmp(argv[i], "--mode") == 0) {
             i++;
             MODE = atoi(argv[i]);

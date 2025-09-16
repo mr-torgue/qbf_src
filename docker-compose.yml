@@ -38,7 +38,8 @@ services:
                 LISTENIP: 172.20.0.2
         image: oqs-bind
         entrypoint:
-            - /init.bash
+            - /init.bash 
+        command: ${ALG} 172.20.0.2
         stdin_open: true
         privileged: true
         tty: true
@@ -60,8 +61,9 @@ services:
                 LISTENIP: 172.20.0.3
         image: oqs-bind
         entrypoint:
-            - /init.bash
-        stdin_open: true
+            - /init.bash 
+        command: ${ALG} 172.20.0.3
+        stdin_open: true 
         privileged: true
         tty: true
         networks:
@@ -83,7 +85,8 @@ services:
                 LISTENIP: 172.20.0.4
         image: oqs-bind
         entrypoint:
-            - /init.bash
+            - /init.bash 
+        command: ${ALG} 172.20.0.4
         stdin_open: true
         privileged: true
         tty: true

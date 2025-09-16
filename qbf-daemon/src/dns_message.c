@@ -1,6 +1,7 @@
 #include <dns_message.h>
 #include <question.h>
 #include <resource_record.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -489,9 +490,11 @@ clone_dnsmessage(DNSMessage *in, DNSMessage **out) {
 char *
 dnsmessage_to_string(DNSMessage *in) {
     if (in == NULL) return "";
-    char **substrings = malloc(sizeof(char *) * (1 + 1 + in->qdcount + in->ancount + in->nscount + in->arcount));
+    // use calloc
+    char **substrings = calloc( (1 + 1 + in->qdcount + in->ancount + in->nscount + in->arcount), sizeof(char *)); // why the first two elements if not used? 
     unsigned char *msg_bytes;
     size_t msg_size;
+    // msg_bytes needs to be freed after use
     dnsmessage_to_bytes(in, &msg_bytes, &msg_size);
     if (is_query(in)) {
         printf("\nType: Query\n");
@@ -545,6 +548,17 @@ dnsmessage_to_string(DNSMessage *in) {
         printf("%s", substrings[i]);
     }
     printf("\n");
+
+    // clean up substrings array
+    for(uint16_t i = 0; i < (1 + 1 + in->qdcount + in->ancount + in->nscount + in->arcount); i++) {
+        // not all substrings are initialized
+        if(substrings[i] != NULL) {
+            free(substrings[i]);
+        }
+    }
+    free(substrings);
+    free(msg_bytes);
+
     return NULL;
 }
 

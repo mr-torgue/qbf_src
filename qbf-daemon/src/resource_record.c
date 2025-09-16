@@ -320,8 +320,9 @@ int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
         } else if (SIG_ALG == P256_FALCON_512_ALG) {
             printf("\nP256_FALCON 512 RRSIG RR Found.");
             SIG_SIZE = P256_FALCON_512_SIG_SIZE;
+        } else {
+            printf("\nCipher not supported (SIG)! rdata[2]: %d\n", SIG_ALG);
         }
-        printf("Cipher not supported (SIG)! rdata[2]: %d\n", SIG_ALG);
         return SIG_SIZE;
     } else if (type == 48) {
         const unsigned char PK_ALG = rdata[3];
@@ -339,8 +340,9 @@ int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
         } else if (PK_ALG == P256_FALCON_512_ALG) {
             printf("\nP256_FALCON 512 DNSKEY RR Found.");
             PK_SIZE = P256_FALCON_512_PK_SIZE;
+        } else {
+            printf("\nCipher not supported (PK)! rdata[2]: %d\n", PK_ALG);
         }
-        printf("Cipher not supported (PK)! rdata[2]: %d\n", PK_ALG);
         return PK_SIZE;
     }
     return -1;
@@ -680,9 +682,9 @@ rr_to_string(ResourceRecord *rr) {
                                    rr->name, rr->type, rr->clas);
         uint8_t tmp = rr->ttl;
         uint16_t mask = 1 << 15;
-        char bits[33];
+        char bits[33] = {0}; // BUG FIX: make sure it is null-terminated
         char *cur_bit = bits;
-        char tmp_bit[2];
+        char tmp_bit[3];
         for (int i = 0; i < 16; i++) {
             int wanted_to_write = snprintf(tmp_bit, 3, "%u ", tmp & mask ? 1 : 0);
             if (wanted_to_write > 3) {
@@ -692,6 +694,20 @@ rr_to_string(ResourceRecord *rr) {
             strcat(cur_bit, tmp_bit);
             cur_bit += 2;
         }
+
+        /*
+        char bits[33] = {0};
+        int pos = 0;
+        for (int i = 0; i < 16; i++) {
+            int written = snprintf(bits + pos, sizeof(bits) - pos, "%u ", (tmp & mask) ? 1 : 0);
+            if (written < 0 || written >= (int)(sizeof(bits) - pos)) {
+                // Handle error or truncation
+                break;
+            }
+            pos += written;
+            tmp <<= 1;
+        }*/
+
         strncat(res, bits, str_len);
         strncat(res, "\n", str_len);
         size_t str_left = str_len - strlen(res);
