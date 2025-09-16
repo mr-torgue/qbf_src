@@ -320,7 +320,14 @@ int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
         } else if (SIG_ALG == P256_FALCON_512_ALG) {
             printf("\nP256_FALCON 512 RRSIG RR Found.");
             SIG_SIZE = P256_FALCON_512_SIG_SIZE;
-        } else {
+        } else if (SIG_ALG == P256_DILITHIUM_ALG) {
+            printf("\nP256_DILITHIUM RRSIG RR Found.");
+            SIG_SIZE = P256_DILITHIUM_SIG_SIZE;
+        } else if (SIG_ALG == MAYO1_ALG) {
+            printf("\nMAYO1 RRSIG RR Found.");
+            SIG_SIZE = MAYO1_SIG_SIZE;
+        }  
+        else {
             printf("\nCipher not supported (SIG)! rdata[2]: %d\n", SIG_ALG);
         }
         return SIG_SIZE;
@@ -340,6 +347,12 @@ int get_alg_sig_pk_size(uint16_t type, unsigned char *rdata) {
         } else if (PK_ALG == P256_FALCON_512_ALG) {
             printf("\nP256_FALCON 512 DNSKEY RR Found.");
             PK_SIZE = P256_FALCON_512_PK_SIZE;
+        } else if (PK_ALG == P256_DILITHIUM_ALG) {
+            printf("\nP256_DILITHIUM DNSKEY RR Found.");
+            PK_SIZE = P256_DILITHIUM_PK_SIZE;
+        } else if (PK_ALG == MAYO1_ALG) {
+            printf("\nMAYO1 DNSKEY RR Found.");
+            PK_SIZE = MAYO1_PK_SIZE;
         } else {
             printf("\nCipher not supported (PK)! rdata[2]: %d\n", PK_ALG);
         }

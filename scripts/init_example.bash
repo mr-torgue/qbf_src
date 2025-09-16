@@ -10,7 +10,7 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
-apt install -y valgrind
+#apt install -y valgrind
 ALG=$1
 #FALCON512, DILITHIUM2, SPHINCS+, P256_FALCON512
 LISTENIP=$2
@@ -29,7 +29,7 @@ dnssec-signzone -o example -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.ex
 iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
 iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
 ifconfig
-#gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
+gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --args /qbf/daemon 172.20.0.4 --algorithm P256_FALCON512 --maxudp 1232 --debug
 #valgrind /qbf/daemon 172.20.0.4 --algorithm P256_FALCON512 --maxudp 1232 --debug
 named -g -d 3

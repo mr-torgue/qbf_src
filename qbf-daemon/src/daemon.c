@@ -33,7 +33,7 @@ uint32_t MAXUDP = 1232;
 uint32_t our_addr;
 uint32_t is_resolver = false;
 int MODE = 2;   // 0:Sequential 1:Parallel-2RTT 2:Parallel-1RTT
-int ALG = 0;    // 0:Falcon-512 1:Dilithium 2:SPHINCS
+int ALG = 0;    // 0:Falcon-512 1:Dilithium 2:SPHINCS 3:P256_Falcon-512 4:P256-Dilithium2 5:MAYO1
 bool BYPASS = false;
 bool debug = true; // Set to true to print logs
 
@@ -1241,6 +1241,21 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                             store->num_required_frags = 3;
                         else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
                             store->num_required_frags = 3;
+                    } else if (ALG == 4) { // P256_DILITHIUM2
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 7;
+                        else if (msg->question_section[0]->qtype == 1) {
+                            if (msg->question_section[0]->qname[0] == '_') // qname minimization, expecting referral
+                                store->num_required_frags = 3;
+                            else
+                                store->num_required_frags = 7;
+                        } else
+                            store->num_required_frags = 3;
+                    } else if (ALG == 5) { // MAYO
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 4;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 3;
                     } 
                     for (int i = 2; i <= store->num_required_frags; i++) {
                         clone_dnsmessage(msg, &(tosendPTR->m_arr[i]));
@@ -1802,6 +1817,10 @@ int main(int argc, char **argv) {
                 ALG = 2;
             else if (strcmp(argv[i], "P256_FALCON512") == 0)
                 ALG = 3;
+            else if (strcmp(argv[i], "P256_DILITHIUM2") == 0)
+                ALG = 4;
+            else if (strcmp(argv[i], "MAYO1") == 0)
+                ALG = 5;
             else {
                 printf("Algorithm not supported!");
                 exit(0);
