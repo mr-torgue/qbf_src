@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 
 RUN apt update
 RUN apt upgrade -y
-RUN apt install nano gdb tcpdump ssh curl cmake gcc pkg-config autoconf automake git build-essential ninja-build libnghttp2-dev libcap-dev libtool libtool-bin libuv1-dev unzip iputils-ping iptables iproute2 liburcu-dev libnetfilter-queue-dev libpcap-dev net-tools netcat traceroute iperf libnl-3-dev libnl-genl-3-dev binutils-dev libreadline6-dev -y
+RUN apt install valgrind nano gdb tcpdump ssh curl cmake gcc pkg-config autoconf automake git build-essential ninja-build libnghttp2-dev libcap-dev libtool libtool-bin libuv1-dev unzip iputils-ping iptables iproute2 liburcu-dev libnetfilter-queue-dev libpcap-dev net-tools netcat traceroute iperf libnl-3-dev libnl-genl-3-dev binutils-dev libreadline6-dev -y
 WORKDIR /
 # Install OpenSSL 3.2.5
 RUN curl -L -O https://github.com/openssl/openssl/releases/download/openssl-3.2.5/openssl-3.2.5.tar.gz
