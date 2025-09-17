@@ -1879,7 +1879,7 @@ int main(int argc, char **argv) {
         memset(&ufd, 0, sizeof(struct pollfd));
         ufd.fd = fd;
         ufd.events = POLLIN;
-        rv = poll(&ufd, 1, 0);    // If we time out, then reset hashtable?
+        rv = poll(&ufd, 1, -1);    // If we time out, then reset hashtable?
         if (rv < 0) {
             printf("Failed to poll nfq\n");
             return -1;

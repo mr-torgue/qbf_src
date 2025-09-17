@@ -52,6 +52,7 @@ services:
             - ./scripts/install_trust_anchor.bash:/install_trust_anchor.bash
             - ./bind-config/named-resolver.conf:/named.conf
             - ./bind-config/root.hints:/root.hints
+            - ./tcpdump:/tmp/tcpdump
         cap_add:
            - NET_ADMIN
     ns1_root:

@@ -20,10 +20,12 @@ LISTENIP=$2
 cat /usr/local/etc/named.conf
 rm -rf /dsset/*  
 
-iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
-iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0
+#iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
+#iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0
 ifconfig 
-gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --mode 2 --is_resolver --debug &
+tcpdump -i any -w /tmp/tcpdump/$ALG-nodaemon.pcap &
+/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --mode 2 --is_resolver --debug --bypass &
+#gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --mode 2 --is_resolver --debug &
 #gdb --args /qbf/daemon 172.20.0.2 --algorithm P256_FALCON512 --maxudp 1232 --debug
 #valgrind /qbf/daemon 172.20.0.2 --algorithm P256_FALCON512 --maxudp 1232 --debug
 named -g -d 3
