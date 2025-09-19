@@ -1127,23 +1127,25 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
         ERROR();
     }
 
+    /*
+    Either a bind9 response or any other internal message
+    We can just accept (ignore) other messages
+    */
     if (is_internal_packet(iphdr)) {
         printf("<Internal Packet > \n");
         size_t outbuff_len = 65355;    // Need to account for large messages because of SPHINCS+
         unsigned char outbuff[outbuff_len];
         uint64_t *question_hash_port = malloc(sizeof(uint64_t));
         memset(question_hash_port, 0, sizeof(uint64_t));
-        if (msg->qdcount == 1)    /*it should always be one */
-        {
-            unsigned char *qout;
-            size_t qout_size;
-            question_to_bytes(msg->question_section[0], &qout, &qout_size);
-            uint32_t *question_hash = (uint32_t *) question_hash_port;
-            *question_hash = hash_16bit(qout, qout_size);
-            *(question_hash + 1) = dport;
-        } else {
-            assert(false);
-        }
+        
+        assert(msg->qdcount == 1);
+        unsigned char *qout;
+        size_t qout_size;
+        question_to_bytes(msg->question_section[0], &qout, &qout_size);
+        uint32_t *question_hash = (uint32_t *) question_hash_port;
+        *question_hash = hash_16bit(qout, qout_size);
+        *(question_hash + 1) = dport;
+        
 
         if (handle_internal_packet(qh, id, iphdr, question_hash_port, outbuff, &outbuff_len)
             && dport != 53) {
@@ -1673,31 +1675,28 @@ uint32_t process_packet(struct nfq_q_handle *qh, struct nfq_data *data,
     uint32_t dst_ip = ipv4hdr->daddr;
     uint32_t src_ip = ipv4hdr->saddr;
     uint32_t res;
+    /*
+    Traffic with our address are sent to UDP and TCP processing function
+    Other traffic with our IP is accepted
+    Else if, UDP or ICMP --> DROP
+    Else --> ACCEPT
+
+    Question: WHY??? Changed it to accept..
+    */
     if (dst_ip == our_addr || src_ip == our_addr) {
         if (ipv4hdr->protocol == IPPROTO_TCP) {
             res = process_tcp(qh, id, ipv4hdr, payload, payloadLen);
         } else if (ipv4hdr->protocol == IPPROTO_UDP) {
             res = process_udp(qh, id, ipv4hdr, payload, payloadLen);
-        } else if (ipv4hdr->protocol == IPPROTO_ICMP) {
-//            icmphdr = (struct icmphdr *) ((char *) payload + sizeof(*ipv4hdr));
         } else {
             res = NF_ACCEPT;
         }
-    } else if (ipv4hdr->protocol == IPPROTO_UDP) {
-//        struct udphdr *udphdr =
-//                (struct udphdr *) ((char *) payload + sizeof(*ipv4hdr));
-//        uint16_t src_port = ntohs(udphdr->source);
-//        uint16_t dst_port = ntohs(udphdr->dest);
-        res = NF_DROP;
     } else {
-        if (ipv4hdr->protocol == IPPROTO_ICMP) {
-//            icmphdr = (struct icmphdr *) ((char *) payload + sizeof(*ipv4hdr));
-            res = NF_DROP;
-        } else {
-            res = NF_ACCEPT;
-        }
+        res = NF_ACCEPT;
     }
+
     **verdict = res;
+    // Again this 0xFFFF value...
     if (res == 0xFFFF) {
         return 0;
     }
@@ -1706,11 +1705,16 @@ uint32_t process_packet(struct nfq_q_handle *qh, struct nfq_data *data,
 
 }
 
+/*
+Callback function for nfqueue
+*/
 static int cb(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg, struct nfq_data *nfa,
               void *data) {
     uint32_t verdict;
     uint32_t *verdict_p = &verdict;
     uint32_t id = process_packet(qh, nfa, &verdict_p);
+
+    // QUESTION: why don't we set a verdict in this case. What does 0xFFFF mean?
     if (*verdict_p == 0xFFFF) {
         return 0;
     }
@@ -1785,8 +1789,13 @@ void refresh_state(void) {
     refresh_hashmap(&responder_state);
 }
 
+/**
+ * Main function contains CLI and main loop
+ */
 int main(int argc, char **argv) {
     char *ipaddr;
+
+    // max: ./daemon --is_resolver --bypass --debug --maxudp 1232 --algorithm FALCON512 --mode 2 = 10
     if (argc < 2 || argc > 11) {
         printf("\nWrong number of arguments: %d\n", argc);
         return -1;
@@ -1873,13 +1882,27 @@ int main(int argc, char **argv) {
     fd = nfq_fd(h);
     printf("Listening...\n");
     fflush(stdout);
+
+    /*
+    Main loop:
+    1. poll nfqueue fd (blocking)
+    2. recv data
+    3. call cb
+
+    Notes:
+    Poll is not needed since there is currently only 1 fd. 
+    However, if we use multiple queues, poll becomes more efficient.
+
+    Consider using mult-threading here.
+     */
     for (;;) {
         int rv;
         struct pollfd ufd;
         memset(&ufd, 0, sizeof(struct pollfd));
         ufd.fd = fd;
         ufd.events = POLLIN;
-        rv = poll(&ufd, 1, -1);    // If we time out, then reset hashtable?
+        // blocking poll: change if non-blocking is required
+        rv = poll(&ufd, 1, -1);    
         if (rv < 0) {
             printf("Failed to poll nfq\n");
             return -1;
@@ -1888,7 +1911,7 @@ int main(int argc, char **argv) {
         } else {
             rv = recv(fd, buf, sizeof(buf), 0);
             if (rv < 0) {
-                printf("failed to receive a thing\n");
+                printf("Failed to receive data\n");
                 return -1;
             }
             nfq_handle_packet(h, buf, rv);
