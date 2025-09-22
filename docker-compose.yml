@@ -31,6 +31,8 @@ services:
                 ipv4_address: 172.20.0.11
             external_net:
                 ipv4_address: 42.42.42.3
+        volumes:
+            - ./data/client:/tmp/
     resolver:
         build:
             context: resolver/
@@ -39,7 +41,7 @@ services:
         image: oqs-bind
         entrypoint:
             - /init.bash 
-        command: ${ALG} 172.20.0.2
+        command: ${ALG} 172.20.0.2 ${BYPASS} ${MODE}
         stdin_open: true
         privileged: true
         tty: true
@@ -52,7 +54,7 @@ services:
             - ./scripts/install_trust_anchor.bash:/install_trust_anchor.bash
             - ./bind-config/named-resolver.conf:/named.conf
             - ./bind-config/root.hints:/root.hints
-            - ./tcpdump:/tmp/tcpdump
+            - ./data/resolver:/tmp/
         cap_add:
            - NET_ADMIN
     ns1_root:
@@ -63,7 +65,7 @@ services:
         image: oqs-bind
         entrypoint:
             - /init.bash 
-        command: ${ALG} 172.20.0.3
+        command: ${ALG} 172.20.0.3 ${BYPASS}
         stdin_open: true 
         privileged: true
         tty: true
@@ -77,6 +79,7 @@ services:
             - ./zones/db.root:/db.root
             - ./bind-config/named-root.conf:/named.conf
             - ./scripts/init_root.bash:/init.bash
+            - ./data/root:/tmp/
         cap_add:
            - NET_ADMIN
     ns1_example:
@@ -87,7 +90,7 @@ services:
         image: oqs-bind
         entrypoint:
             - /init.bash 
-        command: ${ALG} 172.20.0.4
+        command: ${ALG} 172.20.0.4 ${BYPASS}
         stdin_open: true
         privileged: true
         tty: true
@@ -101,6 +104,7 @@ services:
             - ./zones/db.example:/db.example
             - ./bind-config/named-example.conf:/named.conf
             - ./scripts/init_example.bash:/init.bash
+            - ./data/example:/tmp/
         cap_add:
            - NET_ADMIN
 volumes:

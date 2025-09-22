@@ -27,6 +27,7 @@
 #include <assert.h>
 #include <map.h>
 #include <constants.h>
+#include <signal.h>
 
 uint32_t MAXUDP = 1232;
 uint32_t our_addr;
@@ -35,6 +36,10 @@ int MODE = 2;   // 0:Sequential 1:Parallel-2RTT 2:Parallel-1RTT
 int ALG = 0;    // 0:Falcon-512 1:Dilithium 2:SPHINCS 3:P256_Falcon-512 4:P256-Dilithium2 5:MAYO1
 bool BYPASS = false;
 bool debug = true; // Set to true to print logs
+
+void handle_signal(int sig) {
+    exit(0); 
+}
 
 char *itoa(uint16_t in) {
     char *res = NULL;
@@ -1239,9 +1244,9 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                             store->num_required_frags = 7;
                     } else if (ALG == 3) { // P256_FALCON512
                         if (msg->question_section[0]->qtype == DNSKEY)
-                            store->num_required_frags = 3;
+                            store->num_required_frags = 4;
                         else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
-                            store->num_required_frags = 3;
+                            store->num_required_frags = 4;
                     } else if (ALG == 4) { // P256_DILITHIUM2
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 7;
@@ -1792,6 +1797,7 @@ void refresh_state(void) {
  * Main function contains CLI and main loop
  */
 int main(int argc, char **argv) {
+    signal(SIGINT, handle_signal);
     char *ipaddr;
 
     // max: ./daemon --is_resolver --bypass --debug --maxudp 1232 --algorithm FALCON512 --mode 2 = 10
