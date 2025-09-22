@@ -27,7 +27,6 @@
 #include <assert.h>
 #include <map.h>
 #include <constants.h>
-#include <pthread.h>
 
 uint32_t MAXUDP = 1232;
 uint32_t our_addr;
@@ -1895,12 +1894,9 @@ int main(int argc, char **argv) {
 
     Consider using mult-threading here.
      */
+    int rv;
+    struct pollfd ufd = { .fd = fd, .events = POLLIN };
     for (;;) {
-        int rv;
-        struct pollfd ufd;
-        memset(&ufd, 0, sizeof(struct pollfd));
-        ufd.fd = fd;
-        ufd.events = POLLIN;
         // blocking poll: change if non-blocking is required
         rv = poll(&ufd, 1, -1);    
         if (rv < 0) {

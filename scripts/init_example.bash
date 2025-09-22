@@ -16,20 +16,20 @@ ALG=$1
 LISTENIP=$2
 
 
-#rm -rf *.key
-#rm -rf *.private
-#dnssec-keygen -a $ALG -n ZONE example
-#dnssec-keygen -a $ALG -n ZONE -f KSK example
-#rndc-confgen -a > /usr/local/etc/bind/rndc.key
+rm -rf *.key
+rm -rf *.private
+dnssec-keygen -a $ALG -n ZONE example
+dnssec-keygen -a $ALG -n ZONE -f KSK example
+rndc-confgen -a > /usr/local/etc/bind/rndc.key
 #rndc flush
 cat /usr/local/etc/named.conf
-#dnssec-signzone -o example -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.example
+dnssec-signzone -o example -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.example
 /move_ds.bash example. 
 
-#iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
-#iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
+iptables -A INPUT -p ip -j NFQUEUE --queue-num 0 
+iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
 ifconfig
-/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug --bypass &
+/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --args /qbf/daemon 172.20.0.4 --algorithm P256_FALCON512 --maxudp 1232 --debug
 #valgrind /qbf/daemon 172.20.0.4 --algorithm P256_FALCON512 --maxudp 1232 --debug

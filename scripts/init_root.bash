@@ -15,22 +15,22 @@ ALG=$1
 LISTENIP=$2
 
 # TODO: check if keys exist
-#rm -rf /dsset/*
-#rm -rf *.key
-#rm -rf *.private
-#dnssec-keygen -a $ALG -n ZONE .
-#dnssec-keygen -a $ALG -n ZONE -f KSK .
-#rndc-confgen -a > /usr/local/etc/bind/rndc.key
+rm -rf /dsset/*
+rm -rf *.key
+rm -rf *.private
+dnssec-keygen -a $ALG -n ZONE .
+dnssec-keygen -a $ALG -n ZONE -f KSK .
+rndc-confgen -a > /usr/local/etc/bind/rndc.key
 #rndc flush
 cat /usr/local/etc/named.conf
 /add_ds.bash db.root example.
-#dnssec-signzone -o . -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.root;  
+dnssec-signzone -o . -N INCREMENT -t -S -K /usr/local/etc/bind/zones db.root;  
 /move_ds.bash .
 
-#iptables -A INPUT -p ip -j NFQUEUE --queue-num 0
-#iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
+iptables -A INPUT -p ip -j NFQUEUE --queue-num 0
+iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
 ifconfig  
-/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug --bypass &
+/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --args /qbf/daemon 172.20.0.3 --algorithm P256_FALCON512 --maxudp 1232 --debug &
 named -g -d 3
