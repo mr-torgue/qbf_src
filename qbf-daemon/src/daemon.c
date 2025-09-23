@@ -681,6 +681,8 @@ int calc_num_required_frags(DNSMessage *msg, int frag_num, bool is_resolver) {
         } else if (rr->type == DNSKEY && (rr->rdata[3] != SPHINCS_PLUS_SHA256_128S_ALG)) {
             printf("\nDNSKEY RR found...");
             num_dnskey_rr += 1;
+            
+            // | Flags (2B) | Protocol (1B) | Algorithm (1B) | Key |
             int num_dnskey_frag_bytes = rr->rdsize - 4;
             printf("\nnum_dnskey_bytes: %d", num_dnskey_frag_bytes);
             alg_pk_size = get_alg_sig_pk_size(rr->type, rr->rdata);
@@ -784,6 +786,7 @@ int calc_num_required_frags(DNSMessage *msg, int frag_num, bool is_resolver) {
     printf("\ncan_send (1st frag): %d", can_send_copy);
     printf("\ncan_send (rest frags): %d", can_send);
 
+    // what happens if not divisible?
     int num_sig_bytes_to_send = alg_sig_size / num_required_frags;
     int num_pk_bytes_to_send = alg_pk_size / num_required_frags;
     printf("\nnum_sig_bytes_to_send: %d", num_sig_bytes_to_send);
@@ -810,6 +813,10 @@ int calc_num_required_frags(DNSMessage *msg, int frag_num, bool is_resolver) {
     int sig_start_idx, sig_end_idx, pk_start_idx, pk_end_idx;
 
     for (int j = 1; j <= num_required_frags; j++) {
+
+        /* TODO: rewrite code
+        Calculates the indexes for each fragment
+        */
         printf("\n\nFragment %d", j);
         if (j == 1) {
             rem_space_per_frag = can_send_copy - (num_sig_bytes_per_frag + num_pk_bytes_per_frag);
@@ -838,6 +845,16 @@ int calc_num_required_frags(DNSMessage *msg, int frag_num, bool is_resolver) {
                 pk_end_idx += num_pk_bytes_to_send + can_send_additional;
             } else {
                 sig_end_idx = alg_sig_size - 1;
+                pk_end_idx = alg_pk_size - 1;
+            }
+
+            // it is possible that one RR is sent in f.e. 3 fragments 
+            // while other RR use 4 --> remaining space is evenly distributed
+            // but RR sizes are not the same
+            if (sig_end_idx > (alg_sig_size - 1)) {
+                sig_end_idx = alg_sig_size - 1;
+            }
+            if(pk_end_idx > (alg_pk_size - 1)) {
                 pk_end_idx = alg_pk_size - 1;
             }
         }

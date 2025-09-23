@@ -1,0 +1,522 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00      382     0.00     0.00  clone_rr
+  0.00      0.00     0.00      202     0.00     0.00  bytes_to_dnsname
+  0.00      0.00     0.00      172     0.00     0.00  destroy_rr
+  0.00      0.00     0.00      154     0.00     0.00  bytes_to_rr
+  0.00      0.00     0.00      109     0.00     0.00  rr_to_bytes
+  0.00      0.00     0.00       79     0.00     0.00  clone_question
+  0.00      0.00     0.00       55     0.00     0.00  create_dnsmessage
+  0.00      0.00     0.00       54     0.00     0.00  rr_to_string
+  0.00      0.00     0.00       48     0.00     0.00  bytes_to_question
+  0.00      0.00     0.00       48     0.00     0.00  create_question
+  0.00      0.00     0.00       42     0.00     0.00  destroy_question
+  0.00      0.00     0.00       37     0.00     0.00  dnsname_to_bytes
+  0.00      0.00     0.00       37     0.00     0.00  question_to_bytes
+  0.00      0.00     0.00       33     0.00     0.00  find_entry
+  0.00      0.00     0.00       33     0.00     0.00  hash_data
+  0.00      0.00     0.00       32     0.00     0.00  get_alg_sig_pk_size
+  0.00      0.00     0.00       30     0.00     0.00  is_internal_packet
+  0.00      0.00     0.00       30     0.00     0.00  is_query
+  0.00      0.00     0.00       27     0.00     0.00  hashmap_get
+  0.00      0.00     0.00       26     0.00     0.00  bytes_to_dnsmessage
+  0.00      0.00     0.00       25     0.00     0.00  create_rr_f
+  0.00      0.00     0.00       25     0.00     0.00  dnsmessage_to_bytes
+  0.00      0.00     0.00       22     0.00     0.00  clone_dnsmessage
+  0.00      0.00     0.00       22     0.00     0.00  looks_like_dnsmessage
+  0.00      0.00     0.00       22     0.00     0.00  print_ip_port
+  0.00      0.00     0.00       22     0.00     0.00  process_dns_message
+  0.00      0.00     0.00       22     0.00     0.00  process_packet
+  0.00      0.00     0.00       22     0.00     0.00  process_udp
+  0.00      0.00     0.00       20     0.00     0.00  destroy_dnsmessage
+  0.00      0.00     0.00       16     0.00     0.00  dnsmessage_to_string
+  0.00      0.00     0.00       16     0.00     0.00  is_truncated
+  0.00      0.00     0.00       16     0.00     0.00  question_to_string
+  0.00      0.00     0.00       10     0.00     0.00  hash_16bit
+  0.00      0.00     0.00        8     0.00     0.00  handle_internal_packet
+  0.00      0.00     0.00        7     0.00     0.00  create_raw_socket
+  0.00      0.00     0.00        7     0.00     0.00  csum
+  0.00      0.00     0.00        7     0.00     0.00  generic_close
+  0.00      0.00     0.00        7     0.00     0.00  raw_socket_send
+  0.00      0.00     0.00        5     0.00     0.00  calc_num_sig_bytes
+  0.00      0.00     0.00        5     0.00     0.00  qnamef_2_qname
+  0.00      0.00     0.00        5     0.00     0.00  send_dns_messsge
+  0.00      0.00     0.00        4     0.00     0.00  hashmap_create
+  0.00      0.00     0.00        4     0.00     0.00  hashmap_set
+  0.00      0.00     0.00        2     0.00     0.00  calc_num_required_frags
+  0.00      0.00     0.00        2     0.00     0.00  construct_intermediate_message
+  0.00      0.00     0.00        2     0.00     0.00  create_generic_socket
+  0.00      0.00     0.00        2     0.00     0.00  fragment_dns_message
+  0.00      0.00     0.00        2     0.00     0.00  generic_send
+  0.00      0.00     0.00        2     0.00     0.00  hashmap_remove
+  0.00      0.00     0.00        2     0.00     0.00  init_shared_map
+  0.00      0.00     0.00        2     0.00     0.00  internal_close
+  0.00      0.00     0.00        2     0.00     0.00  internal_send
+  0.00      0.00     0.00        2     0.00     0.00  itoa
+  0.00      0.00     0.00        2     0.00     0.00  responding_thread_end
+  0.00      0.00     0.00        2     0.00     0.00  responding_thread_start
+  0.00      0.00     0.00        2     0.00     0.00  update_max_udp
+  0.00      0.00     0.00        1     0.00     0.00  get_addr
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2022 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) no time propagated
+
+index % time    self  children    called     name
+                0.00    0.00      35/382         calc_num_required_frags [44]
+                0.00    0.00     114/382         clone_dnsmessage [23]
+                0.00    0.00     233/382         create_dnsmessage [7]
+[1]      0.0    0.00    0.00     382         clone_rr [1]
+-----------------------------------------------
+                0.00    0.00      48/202         bytes_to_question [9]
+                0.00    0.00     154/202         bytes_to_rr [4]
+[2]      0.0    0.00    0.00     202         bytes_to_dnsname [2]
+-----------------------------------------------
+                0.00    0.00      70/172         looks_like_dnsmessage [24]
+                0.00    0.00     102/172         destroy_dnsmessage [29]
+[3]      0.0    0.00    0.00     172         destroy_rr [3]
+-----------------------------------------------
+                0.00    0.00      70/154         looks_like_dnsmessage [24]
+                0.00    0.00      84/154         bytes_to_dnsmessage [20]
+[4]      0.0    0.00    0.00     154         bytes_to_rr [4]
+                0.00    0.00     154/202         bytes_to_dnsname [2]
+-----------------------------------------------
+                0.00    0.00      18/109         calc_num_required_frags [44]
+                0.00    0.00      91/109         dnsmessage_to_bytes [22]
+[5]      0.0    0.00    0.00     109         rr_to_bytes [5]
+-----------------------------------------------
+                0.00    0.00       2/79          calc_num_required_frags [44]
+                0.00    0.00      22/79          clone_dnsmessage [23]
+                0.00    0.00      55/79          create_dnsmessage [7]
+[6]      0.0    0.00    0.00      79         clone_question [6]
+-----------------------------------------------
+                0.00    0.00       7/55          calc_num_required_frags [44]
+                0.00    0.00      22/55          clone_dnsmessage [23]
+                0.00    0.00      26/55          bytes_to_dnsmessage [20]
+[7]      0.0    0.00    0.00      55         create_dnsmessage [7]
+                0.00    0.00     233/382         clone_rr [1]
+                0.00    0.00      55/79          clone_question [6]
+-----------------------------------------------
+                0.00    0.00      54/54          dnsmessage_to_string [30]
+[8]      0.0    0.00    0.00      54         rr_to_string [8]
+-----------------------------------------------
+                0.00    0.00      22/48          looks_like_dnsmessage [24]
+                0.00    0.00      26/48          bytes_to_dnsmessage [20]
+[9]      0.0    0.00    0.00      48         bytes_to_question [9]
+                0.00    0.00      48/202         bytes_to_dnsname [2]
+                0.00    0.00      48/48          create_question [10]
+-----------------------------------------------
+                0.00    0.00      48/48          bytes_to_question [9]
+[10]     0.0    0.00    0.00      48         create_question [10]
+-----------------------------------------------
+                0.00    0.00      20/42          destroy_dnsmessage [29]
+                0.00    0.00      22/42          looks_like_dnsmessage [24]
+[11]     0.0    0.00    0.00      42         destroy_question [11]
+-----------------------------------------------
+                0.00    0.00      37/37          question_to_bytes [13]
+[12]     0.0    0.00    0.00      37         dnsname_to_bytes [12]
+-----------------------------------------------
+                0.00    0.00       2/37          responding_thread_start [55]
+                0.00    0.00       2/37          calc_num_required_frags [44]
+                0.00    0.00       8/37          process_dns_message [26]
+                0.00    0.00      25/37          dnsmessage_to_bytes [22]
+[13]     0.0    0.00    0.00      37         question_to_bytes [13]
+                0.00    0.00      37/37          dnsname_to_bytes [12]
+-----------------------------------------------
+                0.00    0.00       2/33          hashmap_remove [49]
+                0.00    0.00       4/33          hashmap_set [43]
+                0.00    0.00      27/33          hashmap_get [19]
+[14]     0.0    0.00    0.00      33         find_entry [14]
+-----------------------------------------------
+                0.00    0.00       2/33          hashmap_remove [49]
+                0.00    0.00       4/33          hashmap_set [43]
+                0.00    0.00      27/33          hashmap_get [19]
+[15]     0.0    0.00    0.00      33         hash_data [15]
+-----------------------------------------------
+                0.00    0.00       7/32          calc_num_required_frags [44]
+                0.00    0.00      25/32          create_rr_f [21]
+[16]     0.0    0.00    0.00      32         get_alg_sig_pk_size [16]
+-----------------------------------------------
+                0.00    0.00       8/30          handle_internal_packet [34]
+                0.00    0.00      22/30          process_dns_message [26]
+[17]     0.0    0.00    0.00      30         is_internal_packet [17]
+-----------------------------------------------
+                0.00    0.00      14/30          process_dns_message [26]
+                0.00    0.00      16/30          dnsmessage_to_string [30]
+[18]     0.0    0.00    0.00      30         is_query [18]
+-----------------------------------------------
+                0.00    0.00       2/27          calc_num_required_frags [44]
+                0.00    0.00       4/27          internal_send [52]
+                0.00    0.00       4/27          fragment_dns_message [47]
+                0.00    0.00       8/27          handle_internal_packet [34]
+                0.00    0.00       9/27          process_dns_message [26]
+[19]     0.0    0.00    0.00      27         hashmap_get [19]
+                0.00    0.00      27/33          hash_data [15]
+                0.00    0.00      27/33          find_entry [14]
+-----------------------------------------------
+                0.00    0.00       2/26          internal_send [52]
+                0.00    0.00       2/26          responding_thread_end [54]
+                0.00    0.00      22/26          process_dns_message [26]
+[20]     0.0    0.00    0.00      26         bytes_to_dnsmessage [20]
+                0.00    0.00      84/154         bytes_to_rr [4]
+                0.00    0.00      26/48          bytes_to_question [9]
+                0.00    0.00      26/55          create_dnsmessage [7]
+-----------------------------------------------
+                0.00    0.00      25/25          calc_num_required_frags [44]
+[21]     0.0    0.00    0.00      25         create_rr_f [21]
+                0.00    0.00      25/32          get_alg_sig_pk_size [16]
+-----------------------------------------------
+                0.00    0.00       2/25          responding_thread_start [55]
+                0.00    0.00       2/25          responding_thread_end [54]
+                0.00    0.00       5/25          send_dns_messsge [41]
+                0.00    0.00      16/25          dnsmessage_to_string [30]
+[22]     0.0    0.00    0.00      25         dnsmessage_to_bytes [22]
+                0.00    0.00      91/109         rr_to_bytes [5]
+                0.00    0.00      25/37          question_to_bytes [13]
+-----------------------------------------------
+                0.00    0.00       2/22          construct_intermediate_message [45]
+                0.00    0.00       4/22          fragment_dns_message [47]
+                0.00    0.00      16/22          calc_num_required_frags [44]
+[23]     0.0    0.00    0.00      22         clone_dnsmessage [23]
+                0.00    0.00     114/382         clone_rr [1]
+                0.00    0.00      22/79          clone_question [6]
+                0.00    0.00      22/55          create_dnsmessage [7]
+-----------------------------------------------
+                0.00    0.00      22/22          process_dns_message [26]
+[24]     0.0    0.00    0.00      22         looks_like_dnsmessage [24]
+                0.00    0.00      70/154         bytes_to_rr [4]
+                0.00    0.00      70/172         destroy_rr [3]
+                0.00    0.00      22/48          bytes_to_question [9]
+                0.00    0.00      22/42          destroy_question [11]
+-----------------------------------------------
+                0.00    0.00      22/22          process_dns_message [26]
+[25]     0.0    0.00    0.00      22         print_ip_port [25]
+-----------------------------------------------
+                0.00    0.00      22/22          process_udp [28]
+[26]     0.0    0.00    0.00      22         process_dns_message [26]
+                0.00    0.00      22/22          print_ip_port [25]
+                0.00    0.00      22/22          looks_like_dnsmessage [24]
+                0.00    0.00      22/26          bytes_to_dnsmessage [20]
+                0.00    0.00      22/30          is_internal_packet [17]
+                0.00    0.00      14/30          is_query [18]
+                0.00    0.00      14/16          dnsmessage_to_string [30]
+                0.00    0.00       9/27          hashmap_get [19]
+                0.00    0.00       8/37          question_to_bytes [13]
+                0.00    0.00       8/10          hash_16bit [33]
+                0.00    0.00       8/8           handle_internal_packet [34]
+                0.00    0.00       5/5           qnamef_2_qname [40]
+                0.00    0.00       5/5           send_dns_messsge [41]
+                0.00    0.00       2/2           responding_thread_end [54]
+                0.00    0.00       2/2           construct_intermediate_message [45]
+                0.00    0.00       2/2           responding_thread_start [55]
+-----------------------------------------------
+                0.00    0.00      22/22          cb [61]
+[27]     0.0    0.00    0.00      22         process_packet [27]
+                0.00    0.00      22/22          process_udp [28]
+-----------------------------------------------
+                0.00    0.00      22/22          process_packet [27]
+[28]     0.0    0.00    0.00      22         process_udp [28]
+                0.00    0.00      22/22          process_dns_message [26]
+-----------------------------------------------
+                0.00    0.00       2/20          responding_thread_start [55]
+                0.00    0.00       4/20          responding_thread_end [54]
+                0.00    0.00      14/20          calc_num_required_frags [44]
+[29]     0.0    0.00    0.00      20         destroy_dnsmessage [29]
+                0.00    0.00     102/172         destroy_rr [3]
+                0.00    0.00      20/42          destroy_question [11]
+-----------------------------------------------
+                0.00    0.00       2/16          responding_thread_end [54]
+                0.00    0.00      14/16          process_dns_message [26]
+[30]     0.0    0.00    0.00      16         dnsmessage_to_string [30]
+                0.00    0.00      54/54          rr_to_string [8]
+                0.00    0.00      16/25          dnsmessage_to_bytes [22]
+                0.00    0.00      16/30          is_query [18]
+                0.00    0.00      16/16          is_truncated [31]
+                0.00    0.00      16/16          question_to_string [32]
+-----------------------------------------------
+                0.00    0.00      16/16          dnsmessage_to_string [30]
+[31]     0.0    0.00    0.00      16         is_truncated [31]
+-----------------------------------------------
+                0.00    0.00      16/16          dnsmessage_to_string [30]
+[32]     0.0    0.00    0.00      16         question_to_string [32]
+-----------------------------------------------
+                0.00    0.00       2/10          responding_thread_start [55]
+                0.00    0.00       8/10          process_dns_message [26]
+[33]     0.0    0.00    0.00      10         hash_16bit [33]
+-----------------------------------------------
+                0.00    0.00       8/8           process_dns_message [26]
+[34]     0.0    0.00    0.00       8         handle_internal_packet [34]
+                0.00    0.00       8/30          is_internal_packet [17]
+                0.00    0.00       8/27          hashmap_get [19]
+-----------------------------------------------
+                0.00    0.00       2/7           responding_thread_end [54]
+                0.00    0.00       5/7           send_dns_messsge [41]
+[35]     0.0    0.00    0.00       7         create_raw_socket [35]
+-----------------------------------------------
+                0.00    0.00       7/7           raw_socket_send [38]
+[36]     0.0    0.00    0.00       7         csum [36]
+-----------------------------------------------
+                0.00    0.00       2/7           internal_close [51]
+                0.00    0.00       5/7           send_dns_messsge [41]
+[37]     0.0    0.00    0.00       7         generic_close [37]
+-----------------------------------------------
+                0.00    0.00       2/7           responding_thread_end [54]
+                0.00    0.00       5/7           send_dns_messsge [41]
+[38]     0.0    0.00    0.00       7         raw_socket_send [38]
+                0.00    0.00       7/7           csum [36]
+-----------------------------------------------
+                0.00    0.00       5/5           calc_num_required_frags [44]
+[39]     0.0    0.00    0.00       5         calc_num_sig_bytes [39]
+-----------------------------------------------
+                0.00    0.00       5/5           process_dns_message [26]
+[40]     0.0    0.00    0.00       5         qnamef_2_qname [40]
+-----------------------------------------------
+                0.00    0.00       5/5           process_dns_message [26]
+[41]     0.0    0.00    0.00       5         send_dns_messsge [41]
+                0.00    0.00       5/25          dnsmessage_to_bytes [22]
+                0.00    0.00       5/7           create_raw_socket [35]
+                0.00    0.00       5/7           raw_socket_send [38]
+                0.00    0.00       5/7           generic_close [37]
+-----------------------------------------------
+                0.00    0.00       2/4           init_shared_map [50]
+                0.00    0.00       2/4           main [79]
+[42]     0.0    0.00    0.00       4         hashmap_create [42]
+-----------------------------------------------
+                0.00    0.00       2/4           internal_send [52]
+                0.00    0.00       2/4           calc_num_required_frags [44]
+[43]     0.0    0.00    0.00       4         hashmap_set [43]
+                0.00    0.00       4/33          hash_data [15]
+                0.00    0.00       4/33          find_entry [14]
+-----------------------------------------------
+                0.00    0.00       2/2           fragment_dns_message [47]
+[44]     0.0    0.00    0.00       2         calc_num_required_frags [44]
+                0.00    0.00      35/382         clone_rr [1]
+                0.00    0.00      25/25          create_rr_f [21]
+                0.00    0.00      18/109         rr_to_bytes [5]
+                0.00    0.00      16/22          clone_dnsmessage [23]
+                0.00    0.00      14/20          destroy_dnsmessage [29]
+                0.00    0.00       7/32          get_alg_sig_pk_size [16]
+                0.00    0.00       7/55          create_dnsmessage [7]
+                0.00    0.00       5/5           calc_num_sig_bytes [39]
+                0.00    0.00       2/37          question_to_bytes [13]
+                0.00    0.00       2/79          clone_question [6]
+                0.00    0.00       2/27          hashmap_get [19]
+                0.00    0.00       2/4           hashmap_set [43]
+-----------------------------------------------
+                0.00    0.00       2/2           process_dns_message [26]
+[45]     0.0    0.00    0.00       2         construct_intermediate_message [45]
+                0.00    0.00       2/22          clone_dnsmessage [23]
+                0.00    0.00       2/2           update_max_udp [56]
+-----------------------------------------------
+                0.00    0.00       2/2           responding_thread_start [55]
+[46]     0.0    0.00    0.00       2         create_generic_socket [46]
+                0.00    0.00       2/2           itoa [53]
+-----------------------------------------------
+                0.00    0.00       2/2           responding_thread_end [54]
+[47]     0.0    0.00    0.00       2         fragment_dns_message [47]
+                0.00    0.00       4/22          clone_dnsmessage [23]
+                0.00    0.00       4/27          hashmap_get [19]
+                0.00    0.00       2/2           calc_num_required_frags [44]
+-----------------------------------------------
+                0.00    0.00       2/2           internal_send [52]
+[48]     0.0    0.00    0.00       2         generic_send [48]
+-----------------------------------------------
+                0.00    0.00       2/2           internal_close [51]
+[49]     0.0    0.00    0.00       2         hashmap_remove [49]
+                0.00    0.00       2/33          hash_data [15]
+                0.00    0.00       2/33          find_entry [14]
+-----------------------------------------------
+                0.00    0.00       2/2           main [79]
+[50]     0.0    0.00    0.00       2         init_shared_map [50]
+                0.00    0.00       2/4           hashmap_create [42]
+-----------------------------------------------
+                0.00    0.00       2/2           responding_thread_end [54]
+[51]     0.0    0.00    0.00       2         internal_close [51]
+                0.00    0.00       2/7           generic_close [37]
+                0.00    0.00       2/2           hashmap_remove [49]
+-----------------------------------------------
+                0.00    0.00       2/2           responding_thread_start [55]
+[52]     0.0    0.00    0.00       2         internal_send [52]
+                0.00    0.00       4/27          hashmap_get [19]
+                0.00    0.00       2/26          bytes_to_dnsmessage [20]
+                0.00    0.00       2/2           generic_send [48]
+                0.00    0.00       2/4           hashmap_set [43]
+-----------------------------------------------
+                0.00    0.00       2/2           create_generic_socket [46]
+[53]     0.0    0.00    0.00       2         itoa [53]
+-----------------------------------------------
+                0.00    0.00       2/2           process_dns_message [26]
+[54]     0.0    0.00    0.00       2         responding_thread_end [54]
+                0.00    0.00       4/20          destroy_dnsmessage [29]
+                0.00    0.00       2/2           internal_close [51]
+                0.00    0.00       2/26          bytes_to_dnsmessage [20]
+                0.00    0.00       2/16          dnsmessage_to_string [30]
+                0.00    0.00       2/2           fragment_dns_message [47]
+                0.00    0.00       2/25          dnsmessage_to_bytes [22]
+                0.00    0.00       2/7           create_raw_socket [35]
+                0.00    0.00       2/7           raw_socket_send [38]
+-----------------------------------------------
+                0.00    0.00       2/2           process_dns_message [26]
+[55]     0.0    0.00    0.00       2         responding_thread_start [55]
+                0.00    0.00       2/25          dnsmessage_to_bytes [22]
+                0.00    0.00       2/37          question_to_bytes [13]
+                0.00    0.00       2/10          hash_16bit [33]
+                0.00    0.00       2/2           create_generic_socket [46]
+                0.00    0.00       2/2           internal_send [52]
+                0.00    0.00       2/20          destroy_dnsmessage [29]
+-----------------------------------------------
+                0.00    0.00       2/2           construct_intermediate_message [45]
+[56]     0.0    0.00    0.00       2         update_max_udp [56]
+-----------------------------------------------
+                0.00    0.00       1/1           main [79]
+[57]     0.0    0.00    0.00       1         get_addr [57]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2022 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [20] bytes_to_dnsmessage    [22] dnsmessage_to_bytes    [17] is_internal_packet
+   [2] bytes_to_dnsname       [30] dnsmessage_to_string   [18] is_query
+   [9] bytes_to_question      [12] dnsname_to_bytes       [31] is_truncated
+   [4] bytes_to_rr            [14] find_entry (map.c)     [53] itoa
+  [44] calc_num_required_frags [47] fragment_dns_message  [24] looks_like_dnsmessage
+  [39] calc_num_sig_bytes     [37] generic_close          [25] print_ip_port
+  [23] clone_dnsmessage       [48] generic_send           [26] process_dns_message
+   [6] clone_question         [57] get_addr               [27] process_packet
+   [1] clone_rr               [16] get_alg_sig_pk_size    [28] process_udp
+  [45] construct_intermediate_message [34] handle_internal_packet [40] qnamef_2_qname
+   [7] create_dnsmessage      [33] hash_16bit             [13] question_to_bytes
+  [46] create_generic_socket  [15] hash_data (map.c)      [32] question_to_string
+  [10] create_question        [42] hashmap_create         [38] raw_socket_send
+  [35] create_raw_socket      [19] hashmap_get            [54] responding_thread_end
+  [21] create_rr_f            [49] hashmap_remove         [55] responding_thread_start
+  [36] csum                   [43] hashmap_set             [5] rr_to_bytes
+  [29] destroy_dnsmessage     [50] init_shared_map         [8] rr_to_string
+  [11] destroy_question       [51] internal_close         [41] send_dns_messsge
+   [3] destroy_rr             [52] internal_send          [56] update_max_udp

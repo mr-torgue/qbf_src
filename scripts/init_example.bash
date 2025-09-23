@@ -30,13 +30,14 @@ iptables -A INPUT -p ip -j NFQUEUE --queue-num 0
 iptables -A OUTPUT -p ip -j NFQUEUE --queue-num 0 
 ifconfig
 
+cd /tmp
 if [ "$BYPASS" = "true" ]; then
     echo "Using BYPASS..."
-    nohup tcpdump -i any -w /tmp/$ALG-bypass.pcap &
+    #tcpdump -i any -w /tmp/$ALG-bypass.pcap &
     /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --bypass --debug > /tmp/daemon-$ALG-bypass.txt &
 else
     echo "Not using BYPASS..."
-    nohup tcpdump -i any -w /tmp/$ALG.pcap &
+    #tcpdump -i any -w /tmp/$ALG.pcap &
     /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug > /tmp/daemon-$ALG.txt &
 fi
 
