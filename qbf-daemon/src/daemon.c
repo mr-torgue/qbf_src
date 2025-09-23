@@ -870,14 +870,15 @@ int calc_num_required_frags(DNSMessage *msg, int frag_num, bool is_resolver) {
         DNSMessage *m;
         clone_dnsmessage(msg, &m);
 
+        // are these records freed?
         ResourceRecord **answers_section = malloc(sizeof(ResourceRecord * ) * m->ancount);
         ResourceRecord **authoritative_section = malloc(sizeof(ResourceRecord * ) * m->nscount);
         ResourceRecord **additional_section = malloc(sizeof(ResourceRecord * ) * m->arcount);
+        
         uint16_t qdcount = m->qdcount;
         uint16_t ancount = 0;
         uint16_t nscount = 0;
         uint16_t arcount = 0;
-
 
         // Answer Section
         for (int i = 0; i < m->ancount; i++) {

@@ -33,12 +33,12 @@ ifconfig
 cd /tmp
 if [ "$BYPASS" = "true" ]; then
     echo "Using BYPASS..."
-    #tcpdump -i any -w /tmp/$ALG-bypass.pcap &
-    /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --bypass --debug > /tmp/daemon-$ALG-bypass.txt &
+    tcpdump -i any -w /tmp/$ALG-bypass.pcap &
+    gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --bypass --debug > /tmp/daemon-$ALG-bypass.txt &
 else
     echo "Not using BYPASS..."
-    #tcpdump -i any -w /tmp/$ALG.pcap &
-    /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug > /tmp/daemon-$ALG.txt &
+    tcpdump -i any -w /tmp/$ALG.pcap &
+    gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug > /tmp/daemon-$ALG.txt &
 fi
 
 #/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &

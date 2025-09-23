@@ -612,8 +612,10 @@ rr_to_bytes(ResourceRecord *in, unsigned char **out, size_t *out_len) {
 }
 
 
-int
-clone_rr(ResourceRecord *in, ResourceRecord **out) {
+/*
+
+*/
+int clone_rr(ResourceRecord *in, ResourceRecord **out) {
     int rc = 0;
     ResourceRecord *res = malloc(sizeof(ResourceRecord));
     if (res == NULL) {
