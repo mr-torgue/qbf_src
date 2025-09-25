@@ -697,12 +697,16 @@ int size_section(ResourceRecord **section, const int count, const bool is_resolv
             if (is_resolver) {
                 alg_sig_size = get_alg_sig_pk_size(rr->type, rr->rdata);
                 rr_size = rr_outlen - num_sig_frag_bytes + alg_sig_size;
+                // use alg_sig_size as estimate
+                sizes[i] = alg_sig_size;
+                *total_sig_rr += alg_sig_size;
             }
             else {
                 rr_size = rr_outlen;
+                // complete message so use this
+                sizes[i] = num_sig_frag_bytes;
+                *total_sig_rr += num_sig_frag_bytes;
             }
-            sizes[i] = num_sig_frag_bytes;
-            *total_sig_rr += num_sig_frag_bytes;
         } 
         else if (rr->type == DNSKEY && (rr->rdata[3] != SPHINCS_PLUS_SHA256_128S_ALG)) {
             printf("\nDNSKEY RR found...");
@@ -713,14 +717,17 @@ int size_section(ResourceRecord **section, const int count, const bool is_resolv
             printf("\nnum_dnskey_bytes: %d", num_dnskey_frag_bytes);
             if (is_resolver) {
                 alg_pk_size = get_alg_sig_pk_size(rr->type, rr->rdata);
-                rr_size = rr_outlen - num_dnskey_frag_bytes + alg_pk_size;
+                rr_size = rr_outlen - num_dnskey_frag_bytes + alg_pk_size;                
+                // use alg_sig_size as estimate
+                sizes[i] = alg_pk_size;
+                *total_sig_rr += alg_pk_size;
             }
             else {
                 rr_size = rr_outlen;
+                // gets ignored for resolvers
+                sizes[i] = num_dnskey_frag_bytes;
+                *total_dnskey_rr += num_dnskey_frag_bytes;
             }
-            // gets ignored for resolvers
-            sizes[i] = num_dnskey_frag_bytes;
-            *total_dnskey_rr += num_dnskey_frag_bytes;
         } 
         else {
             rr_size = rr_outlen;
@@ -824,6 +831,7 @@ calculates the number of fragments based on msgsize, total_sig_pk_bytes, savings
 int calculate_fragments(const int msgsize, int total_sig_pk_bytes, const int savings, int *can_send_1, int *can_send) {
     int num_fixed_bytes = msgsize - total_sig_pk_bytes;
     printf("\nnum_fixed_bytes: %d", num_fixed_bytes);
+    assert(MAXUDP > num_fixed_bytes); // should be true
     *can_send = MAXUDP - num_fixed_bytes;
     *can_send_1 = *can_send;
 
@@ -975,7 +983,7 @@ int prepare_fragments(DNSMessage *const msg, const bool is_resolver) {
         // using just ID as key is ok for POC but not for deployment
         hashmap_set(responder_state, id, sizeof(uint16_t), (uintptr_t) store);
         // free up memory
-        free(id);
+        // free(id);
         free(answer_sizes);
         free(authoritative_sizes);
         free(additional_sizes);
