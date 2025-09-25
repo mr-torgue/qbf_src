@@ -692,39 +692,44 @@ int size_section(ResourceRecord **section, const int count, const bool is_resolv
         if (rr->type == RRSIG) {
             printf("\nRRSIG RR found...");
             *num_sig_rr += 1;
+            int num_sig_frag_bytes = calc_num_sig_bytes(rr->rdsize, rr->rdata);
+            printf("\nnum_sig_bytes: %d", num_sig_frag_bytes);
             if (is_resolver) {
-                int num_sig_frag_bytes = calc_num_sig_bytes(rr->rdsize, rr->rdata);
-                printf("\nnum_sig_bytes: %d", num_sig_frag_bytes);
                 alg_sig_size = get_alg_sig_pk_size(rr->type, rr->rdata);
                 rr_size = rr_outlen - num_sig_frag_bytes + alg_sig_size;
             }
             else {
                 rr_size = rr_outlen;
             }
-            *total_sig_rr += rr_size;
+            sizes[i] = num_sig_frag_bytes;
+            *total_sig_rr += num_sig_frag_bytes;
         } 
         else if (rr->type == DNSKEY && (rr->rdata[3] != SPHINCS_PLUS_SHA256_128S_ALG)) {
             printf("\nDNSKEY RR found...");
             *num_dnskey_rr += 1;
+            // | Flags (2B) | Protocol (1B) | Algorithm (1B) | Key |
+            int header_size = 4;
+            int num_dnskey_frag_bytes = rr->rdsize - header_size;
+            printf("\nnum_dnskey_bytes: %d", num_dnskey_frag_bytes);
             if (is_resolver) {
-                // | Flags (2B) | Protocol (1B) | Algorithm (1B) | Key |
-                int num_dnskey_frag_bytes = rr->rdsize - 4;
-                printf("\nnum_dnskey_bytes: %d", num_dnskey_frag_bytes);
                 alg_pk_size = get_alg_sig_pk_size(rr->type, rr->rdata);
                 rr_size = rr_outlen - num_dnskey_frag_bytes + alg_pk_size;
             }
             else {
                 rr_size = rr_outlen;
             }
-            *total_dnskey_rr += rr_size;
+            // gets ignored for resolvers
+            sizes[i] = num_dnskey_frag_bytes;
+            *total_dnskey_rr += num_dnskey_frag_bytes;
         } 
         else {
             rr_size = rr_outlen;
             if (!is_additional || rr->type != OPT)
                 *savings += rr_outlen;
+            // should not get used but store just in case
+            sizes[i] = rr_size;
         }
         printf("\nAnswer %d size: %ld", i, rr_outlen);
-        sizes[i] = rr_size;
         size += rr_size;
     }
     return size;
@@ -847,7 +852,7 @@ uint16_t create_fragments(ResourceRecord **section, ResourceRecord **out_section
         ResourceRecord *rr = section[i];
         // only do this for the additional section
         if (is_additional && rr->type == OPT) {
-            clone_rr(rr, section + new_count);
+            clone_rr(rr, out_section + new_count);
             new_count++;
         }
         else if (rr->type == RRSIG || (rr->type == DNSKEY && (rr->rdata[3] != SPHINCS_PLUS_SHA256_128S_ALG))) {    
@@ -908,67 +913,71 @@ int prepare_fragments(DNSMessage *const msg, const bool is_resolver) {
     // calculate nr of fragments
     int can_send_1, can_send;
     int num_required_frags = calculate_fragments(msgsize, total_sig_pk_bytes, savings, &can_send_1, &can_send);
-    printf("\nnum_required_frags: %d", num_required_frags);   
-    printf("\ncan_send (1st frag): %d", can_send_1);
-    printf("\ncan_send (rest frags): %d", can_send);
+    printf("\nnum_required_frags: %d", num_required_frags);  
+    
+    // resolvers don't do this
+    if (!is_resolver) {
+        printf("\ncan_send (1st frag): %d", can_send_1);
+        printf("\ncan_send (rest frags): %d", can_send);
 
-    // what happens if not divisible?
-    // calculate bytes per fragment
-    int num_sig_bytes_per_frag = total_sig_rr / num_required_frags;
-    printf("\nnum_sig_bytes_per_frag: %d", num_sig_bytes_per_frag);
-    int num_pk_bytes_per_frag = total_dnskey_rr / num_required_frags;
-    printf("\nnum_pk_bytes_per_frag: %d", num_pk_bytes_per_frag);
+        // what happens if not divisible?
+        // calculate bytes per fragment
+        int num_sig_bytes_per_frag = total_sig_rr / num_required_frags;
+        printf("\nnum_sig_bytes_per_frag: %d", num_sig_bytes_per_frag);
+        int num_pk_bytes_per_frag = total_dnskey_rr / num_required_frags;
+        printf("\nnum_pk_bytes_per_frag: %d", num_pk_bytes_per_frag);
 
-    uintptr_t out;
-    ResponderMsgStore *store = malloc(sizeof(ResponderMsgStore));
-    uint16_t *id = malloc(sizeof(uint16_t));
-    *id = msg->identification;
+        uintptr_t out;
+        ResponderMsgStore *store = malloc(sizeof(ResponderMsgStore));
+        uint16_t *id = malloc(sizeof(uint16_t));
+        *id = msg->identification;
 
-    if (!hashmap_get(responder_state, id, sizeof(uint16_t), &out)) {
-        printf("\nAdding full msg to cache...");
-        clone_dnsmessage(msg, &(store->m_arr[0]));
-        store->num_required_frags = num_required_frags;
+        if (!hashmap_get(responder_state, id, sizeof(uint16_t), &out)) {
+            printf("\nAdding full msg to cache...");
+            clone_dnsmessage(msg, &(store->m_arr[0]));
+            store->num_required_frags = num_required_frags;
+        }
+
+        for (int i = 1; i < num_required_frags; i++) {
+
+            printf("\n\nFragment %d", i);
+            printf("\nFragmenting DNS Message....");
+
+            int savings = 0;
+
+            DNSMessage *m;
+            clone_dnsmessage(msg, &m);
+
+            // are these records freed?
+            Question **question_section = malloc(sizeof(Question * ) * msg->qdcount);
+            memcpy(question_section, msg->question_section, sizeof(Question * ) * msg->qdcount);
+            ResourceRecord **answers_section = malloc(sizeof(ResourceRecord * ) * m->ancount);
+            ResourceRecord **authoritative_section = malloc(sizeof(ResourceRecord * ) * m->nscount);
+            ResourceRecord **additional_section = malloc(sizeof(ResourceRecord * ) * m->arcount);
+
+            uint16_t qdcount = m->qdcount;
+            uint16_t ancount = create_fragments(m->answers_section, answers_section, m->ancount, i, num_required_frags, answer_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, false, &savings);
+            uint16_t nscount = create_fragments(m->authoritative_section, authoritative_section, m->nscount, i, num_required_frags, authoritative_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, false, &savings);   
+            uint16_t arcount = create_fragments(m->additional_section, additional_section, m->arcount, i, num_required_frags, additional_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, true, &savings);
+
+            printf("\nSavings: %d", savings);
+            printf("\nAdding Fragment %d to cache...\n", i);
+            m->flags = m->flags | (1 << 9);    // Mark as Truncated
+            DNSMessage *tmp;
+            create_dnsmessage(&tmp, m->identification, m->flags, qdcount, ancount, nscount, arcount,
+                            question_section, answers_section, authoritative_section, additional_section);
+            clone_dnsmessage(tmp, &(store->m_arr[i]));
+            destroy_dnsmessage(&m);
+            destroy_dnsmessage(&tmp);
+        }
+        // using just ID as key is ok for POC but not for deployment
+        hashmap_set(responder_state, id, sizeof(uint16_t), (uintptr_t) store);
+        // free up memory
+        free(id);
+        free(answer_sizes);
+        free(authoritative_sizes);
+        free(additional_sizes);
     }
-
-    for (int i = 1; i < num_required_frags; i++) {
-
-        printf("\n\nFragment %d", i);
-        printf("\nFragmenting DNS Message....");
-
-        int savings = 0;
-
-        DNSMessage *m;
-        clone_dnsmessage(msg, &m);
-
-        // are these records freed?
-        Question **question_section = malloc(sizeof(Question * ) * msg->qdcount);
-        memcpy(question_section, msg->question_section, sizeof(Question * ) * msg->qdcount);
-        ResourceRecord **answers_section = malloc(sizeof(ResourceRecord * ) * m->ancount);
-        ResourceRecord **authoritative_section = malloc(sizeof(ResourceRecord * ) * m->nscount);
-        ResourceRecord **additional_section = malloc(sizeof(ResourceRecord * ) * m->arcount);
-
-        uint16_t qdcount = m->qdcount;
-        uint16_t ancount = create_fragments(m->answers_section, answers_section, m->ancount, i, num_required_frags, answer_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, false, &savings);
-        uint16_t nscount = create_fragments(m->authoritative_section, authoritative_section, m->nscount, i, num_required_frags, authoritative_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, false, &savings);   
-        uint16_t arcount = create_fragments(m->additional_section, additional_section, m->arcount, i, num_required_frags, additional_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, true, &savings);
-
-        printf("\nSavings: %d", savings);
-        printf("\nAdding Fragment %d to cache...\n", i);
-        m->flags = m->flags | (1 << 9);    // Mark as Truncated
-        DNSMessage *tmp;
-        create_dnsmessage(&tmp, m->identification, m->flags, qdcount, ancount, nscount, arcount,
-                          question_section, answers_section, authoritative_section, additional_section);
-        clone_dnsmessage(tmp, &(store->m_arr[i]));
-        destroy_dnsmessage(&m);
-        destroy_dnsmessage(&tmp);
-    }
-    // using just ID as key is ok for POC but not for deployment
-    hashmap_set(responder_state, id, sizeof(uint16_t), (uintptr_t) store);
-    // free up memory
-    free(id);
-    free(answer_sizes);
-    free(authoritative_sizes);
-    free(additional_sizes);
     return num_required_frags;
 
 }
