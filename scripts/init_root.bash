@@ -44,7 +44,7 @@ else
     #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug > /tmp/daemon-$ALG.txt &
 fi
 
-# /qbf/daemon 172.20.0.3 --algorithm FALCON512 --maxudp 1232 --debug
+# gdb --args /qbf/daemon 172.20.0.3 --algorithm FALCON512 --maxudp 1232 --debug
 #/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --args /qbf/daemon 172.20.0.3 --algorithm P256_FALCON512 --maxudp 1232 --debug &

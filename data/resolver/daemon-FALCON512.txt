@@ -9,14 +9,14 @@ Starting daemon...
 Listening...
 
 * Got IP Packet via UDP *
-src_ip: 172.20.0.11 src_port: 47787
+src_ip: 172.20.0.11 src_port: 48991
 dst_ip: 172.20.0.2 dst_port: 53
 Name Server : Receive DNS Query 
 
 Type: Query
 Truncated: No
 Size: 53 bytes
-DNS MESSAGE: id: 62766, flags: 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 
+DNS MESSAGE: id: 46240, flags: 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 
 flag dump: 32, 1
 	qdcount: 1
 	ancount: 0
@@ -34,18 +34,18 @@ Resource Record:
 	Class: 1232
 	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 	rdsize: 12
-	rdata: 0 A 0 8 2D C6 D5 8C 3E 78 DE 55 
+	rdata: 0 A 0 8 FC 68 B9 6A 84 F4 24 F8 
 
 
 * Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 35929
+src_ip: 172.20.0.2 src_port: 49147
 dst_ip: 172.20.0.3 dst_port: 53
 Resolver : Send DNS Query 
 
 Type: Query
 Truncated: No
 Size: 28 bytes
-DNS MESSAGE: id: 9676, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+DNS MESSAGE: id: 16630, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 flag dump: 0, 0
 	qdcount: 1
 	ancount: 0
@@ -67,14 +67,14 @@ Resource Record:
 
 
 * Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 48175
+src_ip: 172.20.0.2 src_port: 48362
 dst_ip: 172.20.0.3 dst_port: 53
 Resolver : Send DNS Query 
 
 Type: Query
 Truncated: No
 Size: 36 bytes
-DNS MESSAGE: id: 5459, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+DNS MESSAGE: id: 47662, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 flag dump: 0, 0
 	qdcount: 1
 	ancount: 0
@@ -97,13 +97,72 @@ Resource Record:
 
 * Got IP Packet via UDP *
 src_ip: 172.20.0.3 src_port: 53
-dst_ip: 172.20.0.2 dst_port: 35929
+dst_ip: 172.20.0.2 dst_port: 48362
+Resolver : Receive DNS Response 
+
+Type: Response
+Truncated: No
+Size: 815 bytes
+DNS MESSAGE: id: 47662, flags: 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 128
+	qdcount: 1
+	ancount: 0
+	nscount: 3
+	arcount: 2
+Question:
+Question:
+	QNAME: example.
+	QTYPE: 2
+	QCLASS: 1
+Authoritative:
+Resource Record:
+	Name: POINTER NAME
+	Type: 2
+	Class: 1
+	TTL: 604800
+	RDSIZE: 6
+	RDATA: 3 6E 73 31 C0 C 
+Resource Record:
+	Name: POINTER NAME
+	Type: 43
+	Class: 1
+	TTL: 604800
+	RDSIZE: 36
+	RDATA: 5A 9F 11 2 C1 B1 3B 79 A2 9B 32 4D EC F9 3F A 4E 4B 2F 10 79 A9 F 8B A6 70 7 65 51 D8 66 32 51 DF 8B 7 
+Resource Record:
+	Name: POINTER NAME
+	Type: 46
+	Class: 1
+	TTL: 604800
+	RDSIZE: 685
+	RDATA: 0 2B 11 1 0 9 3A 80 68 FC 60 4E 68 D4 D3 4E 6F 92 0 39 BC CF 6B 2 EB 4C 57 AC 60 B B8 9F CE 40 35 1 B0 E9 DE EC A3 9C 92 89 24 93 BE E1 FC 9D 60 5D B2 EF 9C 7D BE 92 D0 7 87 43 F0 49 EE 73 6A 5D 4E 6B 3F 41 C5 7C F3 93 56 9D 2A 53 10 4C 5B 35 5F 66 5E F FC 1E 57 C6 1C 5C 2A 18 EF 24 7C 1E 34 45 81 B9 35 CA 93 1D 90 FB 50 65 C7 55 74 5A E7 EB CB A4 97 75 13 B3 7D B0 9F 72 61 9C 64 97 2 D5 40 90 C4 C2 7D B0 44 E5 2A 3E 93 82 93 2A F6 E4 3B A6 C9 AC 4E 27 5D D8 58 A0 12 B5 BB 7E 34 5D E6 5D CA AE 1D 21 61 84 B6 47 E9 94 CC 99 47 29 BC 47 79 90 44 CA 23 DA 5B B8 F3 85 27 5C 33 29 81 9A B3 3B 79 18 86 6B 8E 71 D8 93 DE B8 C3 55 E2 1A F6 2E 9 2E 19 BA C3 50 AA 5A 62 E2 DF B0 95 6C 8A 7A 5A B9 7D 32 10 F7 E2 59 13 7E A3 FB 7C 1C 1C 26 A9 63 D6 DB 53 67 AE 4 8C 23 71 52 C2 95 45 AE 9E 26 8E C2 B0 A3 8C CE E0 F9 2F D2 E EA B9 EA A0 2A F1 DA 92 FB 7C 7A E5 28 F4 4B BF 56 A8 F4 EC 3B 5E 8B 35 9B 78 67 4B D 2A 80 8C 23 C6 8D 2E AF 2C 6E FC EA DB 8F 6B E6 18 CD B 12 E0 DC DB 99 F5 15 BC CA 1C E7 F9 96 46 33 11 A7 85 F 50 34 2D F3 18 EA E6 4 AE 1D A7 23 E9 1A D9 7E 53 65 72 37 11 8 66 F0 78 D8 F9 29 50 54 C E4 86 E7 AB 2D D3 9C AC C1 38 AA A8 DF BD C4 2E 83 B3 51 DE B CD 63 7 CB 7E 94 A2 25 1 62 58 EF 15 6F DB 1 6F 5F D8 F9 1 24 DA B9 75 15 3A 82 DB A5 B3 36 7F 5B 54 8F 9C 12 57 61 B2 5A 78 B4 3F 29 BA 6E A8 36 D4 10 B0 A5 6D 46 A5 F 58 AC 50 1A 54 32 64 CF 63 59 DD 6 1 86 EE 60 5B 28 BA B 11 7A E4 50 93 FB 3A C6 F3 E3 6D D5 B2 7 2E 7D B1 A6 FE F7 8A 52 E6 7A AB 16 CC B7 55 11 2 27 36 AB C4 47 CE 89 B0 E6 7E 69 19 D3 F7 3D BA E1 C 71 2F 82 1F B8 6A A 24 6E A2 3A DF A6 1B B 53 62 B6 D9 27 16 28 44 52 3E 5C 96 24 9E AF 2A 42 3F 5A 13 4 3C 34 4E 73 70 95 57 EA FD 46 BE BA D1 E7 6 8F 1D 26 90 F9 98 2F DC FA 44 5D D3 66 32 16 9D E A7 6D 1D 4E 30 7B 9B 91 7 5D D6 43 4A 92 66 8 A4 A3 64 90 7B FB B1 CA 65 22 74 B3 51 63 19 1E DA 7E E4 3F E9 25 25 93 2E 5B DE 3E 37 2A FD 45 6E 52 C8 B5 17 3A D5 21 E4 61 66 9F FD FE 70 B4 B7 A4 82 23 E 8C FE 77 96 D4 EE D5 6C 4B ED 39 10 0 0 0 0 0 0 0 0 0 0 0 
+Additional:
+Resource Record:
+	Name: POINTER NAME
+	Type: 1
+	Class: 1
+	TTL: 604800
+	RDSIZE: 4
+	RDATA: AC 14 0 4 
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+Resolver : Accept DNS Response 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.3 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 49147
 Resolver : Receive DNS Response 
 
 Type: Response
 Truncated: No
 Size: 745 bytes
-DNS MESSAGE: id: 9676, flags: 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 
+DNS MESSAGE: id: 16630, flags: 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 
 flag dump: 0, 132
 	qdcount: 1
 	ancount: 2
@@ -128,7 +187,7 @@ Resource Record:
 	Class: 1
 	TTL: 604800
 	RDSIZE: 685
-	RDATA: 0 2 11 0 0 9 3A 80 68 FC 50 BF 68 D4 C3 BF 60 70 0 39 EA 55 66 A0 80 D7 C9 96 5D 65 5B 4A 71 10 9E B4 42 D1 14 D9 45 3F 45 38 5B 1A F3 E6 91 9D AF EA 37 3 52 80 2C 4B D9 22 C6 4D 55 B1 3D F5 93 6E 3C B7 B1 96 F6 61 F4 B8 DC 93 F6 87 25 C8 D6 5E 5B B3 4A 1D D7 7F 79 2 50 C 88 8A DF DC D7 1E C2 DC D2 55 9A 2B 93 D9 9C 30 D2 94 60 71 8A 27 F 72 2A 52 34 E4 D8 72 58 78 3 E D2 C4 53 C F4 73 4B D0 6F AA F9 94 D 16 71 A1 6E 64 71 3F 19 7C 7A 9B 57 6B 22 DD 2F 71 CB 87 6A 34 24 9D C3 FE E7 B0 E4 D5 A5 28 6E 49 5B 9F 4E 5D BC AE F6 49 85 80 A9 1A E5 8D 97 80 B9 FE F4 D9 B1 60 DF AF 2A 25 EC 23 A2 C3 9F 22 D1 C9 1A 96 FD 9B 64 80 DA 32 E6 5 A5 C9 47 AC DE 7D 7A A7 54 5E 64 EE 91 88 47 CB 6B 38 C3 DD CF 65 51 15 7D 22 5 71 5F B7 B1 49 F7 AA 2A D4 4E 5F 76 85 1F AE CF 29 B6 AA 99 A 40 A9 1D 6C 74 A2 A2 8A 1C 6 FE 3F 6E DE D0 C8 C3 6 F0 33 2C 22 70 C3 36 78 85 1A 5E C3 B0 D8 7D D3 83 7F AC B1 AF C AF 77 FE 87 F0 58 F4 C1 B0 C5 2A BB B9 B7 AB 87 98 67 9A 23 FB 75 44 DD C5 9D B6 18 9B FC 41 DE AA 79 36 5E 48 F3 8 A1 C1 D2 55 CE 73 47 C7 97 69 E2 C3 52 F7 5C B0 24 61 A5 53 97 DC FE 2E 0 2B 4A A6 C5 5D C8 F8 3A D2 8D 2E 57 68 EE 9A F3 85 C CD D0 92 19 21 DD 47 A2 D BE 2D 88 86 AE B4 6F 53 E A1 71 C6 2E 8E FE C2 B3 10 84 1B E4 96 F3 68 B5 ED 1A 6E 55 71 FD 79 C6 F9 43 E6 5F A6 75 D8 2A 5E 95 32 EC D2 16 BE 19 F6 7B 4D 2D 35 97 4D B 53 0 C8 A0 1B 5B 64 7B 43 E5 B3 73 BD FB DB 3A 31 66 A9 B4 BD BE 4C A5 31 7B E9 C4 4F E8 98 55 74 CE 83 4F 8A 6C 9C 6B 57 D3 30 45 F0 78 2 8F 7 C9 CC 72 8F CB 90 7C 93 B3 2D 23 63 66 75 C8 77 23 E F1 25 33 29 EC 9D AE 71 27 8A 3A 5C F3 7D B1 D9 1 B6 CB 6F A4 73 47 E1 76 D5 21 F7 A4 D6 25 E0 64 36 6D 2C C0 AF 62 B1 C6 93 2B F7 3A 9F F8 95 C3 45 7E E7 FB EE 54 5F 7B 2B D A4 CB 61 35 94 DA D2 27 A6 71 13 CB D3 F9 D6 8C AF 55 73 9A 37 FA 2 4A 85 52 26 17 FC DE 52 59 11 B7 30 27 61 AC 61 D8 24 70 FB 56 EB 35 88 41 A5 8A 16 BA 54 71 98 81 2A 32 3F 8D 82 23 4A CC B3 D7 58 BB D1 D1 D0 F1 37 8 5F 89 92 A2 96 F 66 34 CB CA 51 E4 29 81 F7 EA 72 EE 3C 0 0 0 0 0 0 0 0 0 0 0 0 
+	RDATA: 0 2 11 0 0 9 3A 80 68 FC 60 4E 68 D4 D3 4E 6F 92 0 39 B5 20 72 CE C2 CC F8 23 8F 89 4C 4E 37 66 31 63 F5 C4 BD 1B 76 FF BB 87 C4 15 D6 50 38 42 F4 51 F4 BD 86 38 D0 70 EE 5 F0 83 49 7B 6A 2A CA CD 34 6C 73 96 7F 32 CD BF D1 D7 E9 F2 D1 7D 84 1E 32 4A 72 75 44 55 B6 40 C6 75 1F 52 1D 74 64 8D AE 3D AF 93 B5 3D 4B A2 E B C C0 BC BE D6 A5 DE BF 24 E2 A6 9F D9 6C A3 4C A1 C1 99 3E 17 E6 6E CC C6 30 75 C 9F FD E6 A9 E4 88 D9 15 68 53 2E F2 F6 D5 A7 B2 94 6F D4 AA 30 E9 61 40 D0 30 8 56 11 52 ED 71 77 2D E4 AD A4 EC 1A 9F 12 C1 44 68 8 5C A3 B3 76 C4 A5 1C C F7 D0 92 EC 99 1C 62 E8 BC C8 66 7C 5C 32 4D 8 A2 D 5B E7 8B AF AD 35 14 18 35 7D A9 2C 9E 59 DA C0 E8 EF B 5C A1 95 5F 97 84 D8 F7 FE 3A D4 32 79 84 29 A9 E9 67 A6 18 5C F2 53 D3 F2 A7 5B 56 F3 F7 AD 6C 1C B5 12 18 5A E2 6A AF 92 6 F8 27 D2 74 D BC 7B A1 37 5E 8B F3 43 25 2A 4 41 65 C5 27 F5 86 8F CD FE 64 BA 4C B5 4B EA CD FE 15 9C E3 1D 91 E1 B0 F9 23 84 7E 76 D0 6 A1 16 EB A9 A6 5F 3A 73 E4 2A CB A7 AE 41 EA 17 67 E2 BF 99 D4 9 BE 8B 5 C6 72 6D C9 A 70 9A 3B 34 B7 D7 C1 4C D6 56 18 24 E7 F3 26 D2 49 31 8E 3A 81 B1 9B 55 D0 2D 17 A5 58 6A F8 CD 2B 5F B3 EC E2 60 3B 74 EC D1 C7 23 F2 D8 C7 4E 2F B2 E9 C 85 CB C1 E0 8B 58 F7 D4 B9 6E 46 DE A3 DA BB 47 4B 44 F4 28 52 DD 7E 76 8A 88 7C F1 CE 2D 1 0 D8 27 D3 7E 4E CA A4 EA E2 A 86 8F 8A D9 F0 97 59 B3 DA F6 D2 F6 1B A5 67 29 9D 2F 31 8 77 15 B8 AA B7 63 A0 5B 30 2 82 30 D2 2F 52 A8 73 5C A6 C5 8A 4C 6D 3A F5 53 DB 5A 64 3B 66 CB D C3 E6 F4 90 D4 F 87 39 2E B0 38 A1 4E 82 26 B0 7 F7 2E 38 39 66 76 73 8A 76 6D 4C E4 35 C2 B3 96 98 9A E5 F6 82 AE 4C 65 CD 97 6C 5E 7A 8C 3 98 22 BA EA 7C DD 5F 74 8 3 C9 7A 98 C3 91 7E AB 7A 20 CE 2A D9 70 BF 1B 86 39 7B 38 39 87 D 2B 82 EA 8E DC 76 71 82 5A AC 97 5A 7C F7 79 34 36 CA 83 7E 97 CB 54 68 82 1F E8 89 35 F9 FB 92 E DC C0 66 44 D6 3D 80 55 AD F7 D6 3D A2 29 25 5F EC CA CC 77 91 DA BB 35 BE A9 D3 EE 58 4E 1 9C E5 5F FC A5 5A 5A CA E9 C7 29 55 5D E6 E2 B4 85 EB 44 CD A3 9A 95 5F 9F 95 18 B4 5D D8 53 5C 51 FC 1B 3C D1 0 0 0 0 0 0 0 0 0 0 
 Additional:
 Resource Record:
 	Name: .
@@ -141,296 +200,15 @@ Resource Record:
 Resolver : Accept DNS Response 
 
 * Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 35652
-dst_ip: 172.20.0.3 dst_port: 53
+src_ip: 172.20.0.2 src_port: 42895
+dst_ip: 172.20.0.4 dst_port: 53
 Resolver : Send DNS Query 
 
 Type: Query
 Truncated: No
-Size: 28 bytes
-DNS MESSAGE: id: 18391, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Size: 41 bytes
+DNS MESSAGE: id: 45823, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: .
-	QTYPE: 48
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 56628
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 36 bytes
-DNS MESSAGE: id: 51983, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: example.
-	QTYPE: 2
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 745
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 56414
-dst_ip: 172.20.0.3 dst_port: 53
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 33870
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 28 bytes
-DNS MESSAGE: id: 31442, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: .
-	QTYPE: 48
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 745
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 58409
-dst_ip: 172.20.0.3 dst_port: 53
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 34625
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 36 bytes
-DNS MESSAGE: id: 52891, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: example.
-	QTYPE: 2
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 44880
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 28 bytes
-DNS MESSAGE: id: 49614, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: .
-	QTYPE: 48
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 39780
-dst_ip: 172.20.0.3 dst_port: 53
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 57305
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 36 bytes
-DNS MESSAGE: id: 24588, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: example.
-	QTYPE: 2
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 44943
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 28 bytes
-DNS MESSAGE: id: 41169, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: .
-	QTYPE: 48
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 33334
-dst_ip: 172.20.0.3 dst_port: 53
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 43096
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 36 bytes
-DNS MESSAGE: id: 31949, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: example.
-	QTYPE: 2
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 40628
-dst_ip: 172.20.0.3 dst_port: 53
-Resolver : Send DNS Query 
-
-Type: Query
-Truncated: No
-Size: 28 bytes
-DNS MESSAGE: id: 12240, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-flag dump: 0, 0
-	qdcount: 1
-	ancount: 0
-	nscount: 0
-	arcount: 1
-Question:
-Question:
-	QNAME: .
-	QTYPE: 48
-	QCLASS: 1
-Additional:
-Resource Record:
-	Name: .
-	Type: 41
-	Class: 1232
-	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 0
-	rdata: 
-
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 41211
-dst_ip: 172.20.0.3 dst_port: 53
-
-* Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 53
-dst_ip: 172.20.0.11 dst_port: 47787
-* Send DNS Response *
-
-Type: Response
-Truncated: No
-Size: 69 bytes
-DNS MESSAGE: id: 62766, flags: 1 0 0 0 0 0 0 1 1 0 0 0 0 0 1 0 
-flag dump: 130, 129
 	qdcount: 1
 	ancount: 0
 	nscount: 0
@@ -446,17 +224,318 @@ Resource Record:
 	Type: 41
 	Class: 1232
 	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-	rdsize: 28
-	rdata: 0 A 0 18 2D C6 D5 8C 3E 78 DE 55 1 0 0 0 68 D4 D2 10 6D 8A 2C 15 D9 57 76 B0 
+	rdsize: 0
+	rdata: 
 
 
 * Got IP Packet via UDP *
-src_ip: 172.20.0.2 src_port: 34964
+src_ip: 172.20.0.2 src_port: 46328
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 51863
 dst_ip: 172.20.0.3 dst_port: 53
 Resolver : Send DNS Query 
 
 Type: Query
 Truncated: No
 Size: 28 bytes
-DNS MESSAGE: id: 60373, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+DNS MESSAGE: id: 1590, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: .
+	QTYPE: 48
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 39964
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 45402
+dst_ip: 172.20.0.3 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 28 bytes
+DNS MESSAGE: id: 52875, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: .
+	QTYPE: 48
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 815
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 35756
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43722
+dst_ip: 172.20.0.4 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 9962, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 53057
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 59930
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 55699
+dst_ip: 172.20.0.3 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 28 bytes
+DNS MESSAGE: id: 30962, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: .
+	QTYPE: 48
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43104
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 49110
+dst_ip: 172.20.0.4 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 31839, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 57365
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 49386
+dst_ip: 172.20.0.3 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 28 bytes
+DNS MESSAGE: id: 24977, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: .
+	QTYPE: 48
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 47708
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 51876
+dst_ip: 172.20.0.4 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 6510, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 59785
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 54995
+dst_ip: 172.20.0.3 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 28 bytes
+DNS MESSAGE: id: 59710, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: .
+	QTYPE: 48
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 45699
+dst_ip: 172.20.0.3 dst_port: 53
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 50554
+dst_ip: 172.20.0.4 dst_port: 53
+Resolver : Send DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 53732, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 53
+dst_ip: 172.20.0.11 dst_port: 48991
+* Send DNS Response *
+
+Type: Response
+Truncated: No
+Size: 69 bytes
+DNS MESSAGE: id: 46240, flags: 1 0 0 0 0 0 0 1 1 0 0 0 0 0 1 0 
+flag dump: 130, 129

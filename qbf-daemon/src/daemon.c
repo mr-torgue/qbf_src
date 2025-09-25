@@ -745,15 +745,15 @@ needs to be done because each rr sig/key can have slightly different key sizes
 @param num_required_frags: total number of fragments
 @param can_send_1: can send in first fragment
 @param can_send: can send in 2..n fragments
-@param total_pk_sig_bytes: total amount of sig/pk bytes to be sent
+@param total_pk_sig_bytes_per_frag: total amount of sig/pk bytes to be sent
 @param rr_pk_sig_count: total number of sig and key rr's
 @param start_idx, end_idx: start and end index for the given rr-fragment combination
 */
-void get_frag_index(const int frag_nr, const int num_required_frags, const int alg_size, const int can_send_1, const int can_send, const int total_pk_sig_bytes, const int rr_pk_sig_count, int *start_idx, int *end_idx) {
+void get_frag_index(const int frag_nr, const int num_required_frags, const int alg_size, const int can_send_1, const int can_send, const int total_pk_sig_bytes_per_frag, const int rr_pk_sig_count, int *start_idx, int *end_idx) {
     int rem_space_per_frag, can_send_additional;
     int num_bytes_to_send = alg_size / num_required_frags;
     if (frag_nr == 1) {
-        rem_space_per_frag = can_send_1 - total_pk_sig_bytes;
+        rem_space_per_frag = can_send_1 - total_pk_sig_bytes_per_frag;
         if (rem_space_per_frag < 0) { // corner case
             int tmp = ceil((double) abs(rem_space_per_frag) / rr_pk_sig_count);
             num_bytes_to_send -= tmp;
@@ -765,13 +765,13 @@ void get_frag_index(const int frag_nr, const int num_required_frags, const int a
         *start_idx = 0;
         *end_idx = num_bytes_to_send + can_send_additional - 1;
     } else {
-        rem_space_per_frag = can_send - total_pk_sig_bytes;
+        rem_space_per_frag = can_send - total_pk_sig_bytes_per_frag;
         printf("\nrem_space_per_frag: %d", rem_space_per_frag);
         can_send_additional = rem_space_per_frag / rr_pk_sig_count;
         printf("\ncan_send_additional: %d", can_send_additional);
 
         // assumption: this is the same for every step (except first)
-        *end_idx += (frag_nr - 1) * (num_bytes_to_send + can_send_additional);
+        *end_idx = frag_nr * (num_bytes_to_send + can_send_additional);
         *start_idx = *end_idx + 1 - (num_bytes_to_send + can_send_additional);
 
         // it is possible that one RR is sent in f.e. 3 fragments 
@@ -784,6 +784,7 @@ void get_frag_index(const int frag_nr, const int num_required_frags, const int a
         // assertion to make sure all bytes are sent
         assert(frag_nr != num_required_frags || *end_idx + 1 == alg_size);
     }
+    printf("\nstart idx: %d, end idx: %d", *start_idx, *end_idx);
 }
 
 /*
@@ -844,7 +845,7 @@ int calculate_fragments(const int msgsize, int total_sig_pk_bytes, const int sav
 /*
 create the fragments for a given section
 */
-uint16_t create_fragments(ResourceRecord **section, ResourceRecord **out_section, const int count, const int frag_nr, const int num_required_frags, const int *const sizes, const int can_send_1, const int can_send, const int total_pk_sig_bytes, const int rr_pk_sig_count, const bool is_additional, int *savings) {
+uint16_t create_fragments(ResourceRecord **section, ResourceRecord **out_section, const int count, const int frag_nr, const int num_required_frags, const int *const sizes, const int can_send_1, const int can_send, const int total_sig_pk_bytes_per_frag, const int rr_pk_sig_count, const bool is_additional, int *savings) {
     // keep track of new rr count
     uint16_t new_count = 0;
     int start_idx, end_idx;   
@@ -856,7 +857,7 @@ uint16_t create_fragments(ResourceRecord **section, ResourceRecord **out_section
             new_count++;
         }
         else if (rr->type == RRSIG || (rr->type == DNSKEY && (rr->rdata[3] != SPHINCS_PLUS_SHA256_128S_ALG))) {    
-            get_frag_index(frag_nr, num_required_frags, sizes[i], can_send_1, can_send, total_pk_sig_bytes, rr_pk_sig_count, &start_idx, &end_idx);
+            get_frag_index(frag_nr, num_required_frags, sizes[i], can_send_1, can_send, total_sig_pk_bytes_per_frag, rr_pk_sig_count, &start_idx, &end_idx);
             ResourceRecord *rr_fragment;
             // should still work because start_idx and end_idx match with rr->type
             create_rr_f(&rr_fragment, rr->name, rr->name_bytes,
@@ -926,6 +927,7 @@ int prepare_fragments(DNSMessage *const msg, const bool is_resolver) {
         printf("\nnum_sig_bytes_per_frag: %d", num_sig_bytes_per_frag);
         int num_pk_bytes_per_frag = total_dnskey_rr / num_required_frags;
         printf("\nnum_pk_bytes_per_frag: %d", num_pk_bytes_per_frag);
+        int total_sig_pk_bytes_per_frag = num_sig_bytes_per_frag + num_pk_bytes_per_frag;
 
         uintptr_t out;
         ResponderMsgStore *store = malloc(sizeof(ResponderMsgStore));
@@ -938,7 +940,7 @@ int prepare_fragments(DNSMessage *const msg, const bool is_resolver) {
             store->num_required_frags = num_required_frags;
         }
 
-        for (int i = 1; i < num_required_frags; i++) {
+        for (int i = 1; i <= num_required_frags; i++) {
 
             printf("\n\nFragment %d", i);
             printf("\nFragmenting DNS Message....");
@@ -956,9 +958,9 @@ int prepare_fragments(DNSMessage *const msg, const bool is_resolver) {
             ResourceRecord **additional_section = malloc(sizeof(ResourceRecord * ) * m->arcount);
 
             uint16_t qdcount = m->qdcount;
-            uint16_t ancount = create_fragments(m->answers_section, answers_section, m->ancount, i, num_required_frags, answer_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, false, &savings);
-            uint16_t nscount = create_fragments(m->authoritative_section, authoritative_section, m->nscount, i, num_required_frags, authoritative_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, false, &savings);   
-            uint16_t arcount = create_fragments(m->additional_section, additional_section, m->arcount, i, num_required_frags, additional_sizes, can_send_1, can_send, total_sig_pk_bytes, rr_pk_sig_count, true, &savings);
+            uint16_t ancount = create_fragments(m->answers_section, answers_section, m->ancount, i, num_required_frags, answer_sizes, can_send_1, can_send, total_sig_pk_bytes_per_frag, rr_pk_sig_count, false, &savings);
+            uint16_t nscount = create_fragments(m->authoritative_section, authoritative_section, m->nscount, i, num_required_frags, authoritative_sizes, can_send_1, can_send, total_sig_pk_bytes_per_frag, rr_pk_sig_count, false, &savings);   
+            uint16_t arcount = create_fragments(m->additional_section, additional_section, m->arcount, i, num_required_frags, additional_sizes, can_send_1, can_send, total_sig_pk_bytes_per_frag, rr_pk_sig_count, true, &savings);
 
             printf("\nSavings: %d", savings);
             printf("\nAdding Fragment %d to cache...\n", i);
