@@ -757,40 +757,37 @@ needs to be done because each rr sig/key can have slightly different key sizes
 @param start_idx, end_idx: start and end index for the given rr-fragment combination
 */
 void get_frag_index(const int frag_nr, const int num_required_frags, const int alg_size, const int can_send_1, const int can_send, const int total_pk_sig_bytes_per_frag, const int rr_pk_sig_count, int *start_idx, int *end_idx) {
-    int rem_space_per_frag, can_send_additional;
+    int rem_space_per_frag, can_send_additional, rem_space_per_frag_1, can_send_additional_1;
     int num_bytes_to_send = alg_size / num_required_frags;
-    if (frag_nr == 1) {
-        rem_space_per_frag = can_send_1 - total_pk_sig_bytes_per_frag;
-        if (rem_space_per_frag < 0) { // corner case
-            int tmp = ceil((double) abs(rem_space_per_frag) / rr_pk_sig_count);
-            num_bytes_to_send -= tmp;
-            rem_space_per_frag = 0;
-        }
-        printf("\nrem_space_per_frag: %d", rem_space_per_frag);
-        can_send_additional = rem_space_per_frag / rr_pk_sig_count;
-        printf("\ncan_send_additional: %d", can_send_additional);
-        *start_idx = 0;
-        *end_idx = num_bytes_to_send + can_send_additional - 1;
-    } else {
-        rem_space_per_frag = can_send - total_pk_sig_bytes_per_frag;
-        printf("\nrem_space_per_frag: %d", rem_space_per_frag);
-        can_send_additional = rem_space_per_frag / rr_pk_sig_count;
-        printf("\ncan_send_additional: %d", can_send_additional);
+    rem_space_per_frag_1 = can_send_1 - total_pk_sig_bytes_per_frag; 
+    rem_space_per_frag = can_send - total_pk_sig_bytes_per_frag;
+    can_send_additional_1 = rem_space_per_frag_1 / rr_pk_sig_count;
+    can_send_additional = rem_space_per_frag / rr_pk_sig_count;
+    printf("\nrem_space_per_frag_1: %d", rem_space_per_frag_1);
+    printf("\ncan_send_additional_1: %d", can_send_additional_1);
+    printf("\nrem_space_per_frag: %d", rem_space_per_frag);
+    printf("\ncan_send_additional: %d", can_send_additional);
 
-        // assumption: this is the same for every step (except first)
-        *end_idx = frag_nr * (num_bytes_to_send + can_send_additional);
-        *start_idx = *end_idx + 1 - (num_bytes_to_send + can_send_additional);
+    /*
+    0 ... num_bytes_to_send + can_send_additional_1 - 1
+    num_bytes_to_send + can_send_additional_1 ... num_bytes_to_send + can_send_additional_1 - 1 + num_bytes_to_send + can_send_additional
+    num_bytes_to_send + can_send_additional_1 + num_bytes_to_send + can_send_additional ... num_bytes_to_send + can_send_additional_1 - 1 + 2 * (num_bytes_to_send + can_send_additional)
 
-        // it is possible that one RR is sent in f.e. 3 fragments 
-        // while other RR use 4 --> remaining space is evenly distributed
-        // but RR sizes are not the same
-        if (*end_idx > (alg_size - 1)) {
-            *end_idx = alg_size - 1;
-        }
-
-        // assertion to make sure all bytes are sent
-        assert(frag_nr != num_required_frags || *end_idx + 1 == alg_size);
+    0 ... num_bytes_to_send + can_send_additional_1 - 1
+    num_bytes_to_send + can_send_additional_1 ... num_bytes_to_send + can_send_additional + num_bytes_to_send + can_send_additional_1 - 1
+    num_bytes_to_send + can_send_additional_1 + num_bytes_to_send + can_send_additional ... 2 * (num_bytes_to_send + can_send_additional) + num_bytes_to_send + can_send_additional_1 - 1
+    seems to work
+    */
+    *end_idx = (frag_nr - 1) * (num_bytes_to_send + can_send_additional) + num_bytes_to_send + can_send_additional_1 - 1;
+    *start_idx = frag_nr == 1 ? 0 : *end_idx - (num_bytes_to_send + can_send_additional) + 1;
+    // it is possible that one RR is sent in f.e. 3 fragments 
+    // while other RR use 4 --> remaining space is evenly distributed
+    // but RR sizes are not the same
+    if (*end_idx > (alg_size - 1)) {
+        *end_idx = alg_size - 1;
     }
+    assert(frag_nr != num_required_frags || *end_idx + 1 == alg_size);
+
     printf("\nstart idx: %d, end idx: %d", *start_idx, *end_idx);
 }
 
