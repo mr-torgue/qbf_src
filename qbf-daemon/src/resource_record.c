@@ -159,7 +159,7 @@ create_rr(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t na
 int
 create_rr_f(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t name_byte_len, uint16_t type,
             uint16_t clas, uint32_t ttl, uint16_t rdsize, unsigned char *rdata, int sig_start_idx, int sig_end_idx,
-            int pk_start_idx, int pk_end_idx) {
+            int pk_start_idx, int pk_end_idx, const int alg_size) {
     ResourceRecord *rr = malloc(sizeof(ResourceRecord));
     if (rr == NULL) {
         return -1;
@@ -181,7 +181,8 @@ create_rr_f(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t 
 
     if (rr->type == 46) {
 //        const char SIG_ALG = rdata[2];
-        int SIG_SIZE = get_alg_sig_pk_size(rr->type, rdata);
+        //int SIG_SIZE = get_alg_sig_pk_size(rr->type, rdata);
+        int SIG_SIZE = alg_size;
         if (!((0 <= sig_start_idx) && (sig_start_idx <= sig_end_idx) && (sig_end_idx < SIG_SIZE))) {
             rr->rdsize = 0;
             *out = rr;
@@ -238,7 +239,8 @@ create_rr_f(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t 
 
     } else if (rr->type == 48) {
 //        const char PK_ALG = rdata[3];
-        int PK_SIZE = get_alg_sig_pk_size(rr->type, rdata);
+        //int PK_SIZE = get_alg_sig_pk_size(rr->type, rdata);
+        int PK_SIZE = alg_size;
         if (!((0 <= pk_start_idx) && (pk_start_idx <= pk_end_idx) && (pk_end_idx < PK_SIZE))) {
             rr->rdsize = 0;
             *out = rr;

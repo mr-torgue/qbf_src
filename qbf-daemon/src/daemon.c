@@ -867,7 +867,7 @@ uint16_t create_fragments(ResourceRecord **section, ResourceRecord **out_section
             // should still work because start_idx and end_idx match with rr->type
             create_rr_f(&rr_fragment, rr->name, rr->name_bytes,
                         rr->name_byte_len, rr->type, rr->clas, rr->ttl,
-                        rr->rdsize, rr->rdata, start_idx, end_idx, start_idx, end_idx);
+                        rr->rdsize, rr->rdata, start_idx, end_idx, start_idx, end_idx, sizes[i]);
             clone_rr(rr_fragment, out_section + new_count);
             new_count++;
         } 

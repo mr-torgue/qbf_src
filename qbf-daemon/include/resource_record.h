@@ -34,7 +34,7 @@ create_rr(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t na
 int
 create_rr_f(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t name_byte_len, uint16_t type,
             uint16_t clas, uint32_t ttl, uint16_t rdsize, unsigned char *rdata, int sig_start_idx, int sig_end_idx,
-            int pk_start_idx, int pk_end_idx);
+            int pk_start_idx, int pk_end_idx, const int alg_size);
 
 int
 combine_rr(ResourceRecord **out, char *name, unsigned char *name_bytes, size_t name_byte_len, uint16_t type,
