@@ -17,6 +17,13 @@ LISTENIP=$2
 BYPASS=$3
 MODE=$4
 
+# sometimes daemon and bind9 use different names for the same sig scheme
+if [ "$ALG" = "SPHINCS+" ]; then
+    BIND_ALG=SPHINCS+-SHA256-128S
+else
+    BIND_ALG=$ALG
+fi
+
 /install_trust_anchor.bash  
 #rndc flush
 cat /usr/local/etc/named.conf

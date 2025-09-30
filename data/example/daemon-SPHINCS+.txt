@@ -1,0 +1,2236 @@
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Using algorithm: SPHINCS+
+Using maxudp: 1232
+Enabling debugging...
+Starting daemon...
+Listening...
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43990
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 44445, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 42426
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 42426
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 42426
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 42426
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 44445, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43990
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 44445, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 34108
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 23805, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 55479
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 55479
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 55479
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 55479
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 23805, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 34108
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 23805, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 33884
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 34229, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 45456
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 45456
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 45456
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 45456
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 34229, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 33884
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 34229, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 37335
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 17111, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38687
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38687
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38687
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38687
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 17111, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 37335
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 17111, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43705
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 49323, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 41333
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 41333
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 41333
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 41333
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 49323, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43705
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 49323, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 57598
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 7318, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 60901
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 60901
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 60901
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 60901
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 7318, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 57598
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 7318, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43679
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 57785, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38877
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38877
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38877
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38877
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 57785, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43679
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 57785, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 48450
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 37743, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38413
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38413
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38413
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38413
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 37743, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 48450
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 37743, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43916
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 54975, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 33922
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 33922
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 33922
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 33922
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 54975, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43916
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 54975, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43367
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 41 bytes
+DNS MESSAGE: id: 26771, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 58606
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 58606
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 58606
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 58606
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 26771, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43367
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 41 bytes
+DNS MESSAGE: id: 26771, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 40499
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 42879, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 34339
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 34339
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 34339
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 34339
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 42879, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 40499
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 42879, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 45891
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 29630, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 36765
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 36765
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 36765
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 36765
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 29630, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 45891
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 29630, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 50984
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 33100, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 40999
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 40999
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 40999
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 40999
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 33100, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 50984
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 33100, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 38701
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 23512, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38399
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 38399
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38399
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 38399
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 23512, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 38701
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 23512, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 56102
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 25520, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 44685
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 44685
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 44685
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 44685
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 25520, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 56102
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 25520, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 57448
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 47646, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 44162
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 44162
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 44162
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 44162
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 47646, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 57448
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 47646, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 50836
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 44821, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 54783
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 54783
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 54783
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 54783
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 44821, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 50836
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 44821, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43507
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 51598, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 36900
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 36900
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 36900
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 36900
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 51598, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43507
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 51598, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 49681
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 32992, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 33890
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 33890
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 33890
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 33890
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 32992, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 49681
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 32992, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 37342
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 10125, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 46338
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 46338
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 46338
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 46338
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 10125, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 37342
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 10125, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.2 src_port: 43862
+dst_ip: 172.20.0.4 dst_port: 53
+Name Server : Receive DNS Query 
+
+Type: Query
+Truncated: No
+Size: 42 bytes
+DNS MESSAGE: id: 35510, flags: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 0
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+
+Response not in cache...
+Name Server : Make internal query to bind9
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 60158
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 60158
+dst_ip: 172.20.0.4 dst_port: 53
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 60158
+<Internal Packet > 
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.4 dst_port: 60158
+<Internal Packet > 
+
+Full DNS Message from bind9:
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 35510, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134
+	qdcount: 1
+	ancount: 0
+	nscount: 0
+	arcount: 1
+Question:
+Question:
+	QNAME: test2.example.
+	QTYPE: 1
+	QCLASS: 1
+Additional:
+Resource Record:
+	Name: .
+	Type: 41
+	Class: 1232
+	Extended RCODE || version: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+	rdsize: 0
+	rdata: 
+
+DNS Message within MAXUDP Limit. No need to fragment.
+
+* Got IP Packet via UDP *
+src_ip: 172.20.0.4 src_port: 53
+dst_ip: 172.20.0.2 dst_port: 43862
+* Send DNS Response *
+
+Type: Response
+Truncated: Yes
+Size: 42 bytes
+DNS MESSAGE: id: 35510, flags: 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 
+flag dump: 0, 134

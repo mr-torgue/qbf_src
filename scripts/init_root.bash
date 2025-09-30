@@ -15,12 +15,19 @@ ALG=$1
 LISTENIP=$2
 BYPASS=$3
 
+# sometimes daemon and bind9 use different names for the same sig scheme
+if [ "$ALG" = "SPHINCS+" ]; then
+    BIND_ALG=SPHINCS+-SHA256-128S
+else
+    BIND_ALG=$ALG
+fi
+
 # TODO: check if keys exist
 rm -rf /dsset/*
 rm -rf *.key
 rm -rf *.private
-dnssec-keygen -a $ALG -n ZONE .
-dnssec-keygen -a $ALG -n ZONE -f KSK .
+dnssec-keygen -a $BIND_ALG -n ZONE .
+dnssec-keygen -a $BIND_ALG -n ZONE -f KSK .
 rndc-confgen -a > /usr/local/etc/bind/rndc.key
 #rndc flush
 cat /usr/local/etc/named.conf
@@ -37,14 +44,14 @@ cd /tmp
 if [ "$BYPASS" = "true" ]; then
     echo "Using BYPASS..."
     tcpdump -i any -w /tmp/$ALG-bypass.pcap &
-    gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --bypass --debug > /tmp/daemon-$ALG-bypass.txt &
+    #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --bypass --debug > /tmp/daemon-$ALG-bypass.txt &
 else
     echo "Not using BYPASS..."
     tcpdump -i any -w /tmp/$ALG.pcap &
-    gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug > /tmp/daemon-$ALG.txt &
+    #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug > /tmp/daemon-$ALG.txt &
 fi
 
-# gdb --args /qbf/daemon 172.20.0.3 --algorithm FALCON512 --maxudp 1232 --debug
+# gdb --args /qbf/daemon 172.20.0.3 --algorithm P256_DILITHIUM2 --maxudp 1232 --debug
 #/qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --batch -ex "run" -ex "bt" -ex "quit" --args /qbf/daemon $LISTENIP --algorithm $ALG --maxudp 1232 --debug &
 #gdb --args /qbf/daemon 172.20.0.3 --algorithm P256_FALCON512 --maxudp 1232 --debug &

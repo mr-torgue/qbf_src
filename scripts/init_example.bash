@@ -16,10 +16,17 @@ ALG=$1
 LISTENIP=$2
 BYPASS=$3
 
+# sometimes daemon and bind9 use different names for the same sig scheme
+if [ "$ALG" = "SPHINCS+" ]; then
+    BIND_ALG=SPHINCS+-SHA256-128S
+else
+    BIND_ALG=$ALG
+fi
+
 rm -rf *.key
 rm -rf *.private
-dnssec-keygen -a $ALG -n ZONE example
-dnssec-keygen -a $ALG -n ZONE -f KSK example
+dnssec-keygen -a $BIND_ALG -n ZONE example
+dnssec-keygen -a $BIND_ALG -n ZONE -f KSK example
 rndc-confgen -a > /usr/local/etc/bind/rndc.key
 #rndc flush
 cat /usr/local/etc/named.conf

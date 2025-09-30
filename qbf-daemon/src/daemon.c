@@ -783,7 +783,8 @@ void get_frag_index(const int frag_nr, const int num_required_frags, const int a
     // it is possible that one RR is sent in f.e. 3 fragments 
     // while other RR use 4 --> remaining space is evenly distributed
     // but RR sizes are not the same
-    if (*end_idx > (alg_size - 1)) {
+    // NOTE: unsure if completely correct
+    if (*end_idx > (alg_size - 1) || frag_nr == num_required_frags) {
         *end_idx = alg_size - 1;
     }
     assert(frag_nr != num_required_frags || *end_idx + 1 == alg_size);
