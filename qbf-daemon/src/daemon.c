@@ -34,6 +34,21 @@ uint32_t MAXUDP = 1232;
 uint32_t our_addr;
 uint32_t is_resolver = false;
 int MODE = 2;   // 0:Sequential 1:Parallel-2RTT 2:Parallel-1RTT
+/*
+FALCON512 = 0
+P256_FALCON512 = 1
+RSA3072_FALCON512 = 2
+DILITHIUM2 = 3
+P256_DILITHIUM2 = 4
+RSA3072_DILITHIUM2 = 5
+SPHINCSSHA256128S = 6
+P256_SPHINCSSHA256128S = 7
+RSA3072_SPHINCSSHA256128S = 8
+MAYO1 = 9
+P256_MAYO1 = 10
+SNOVA2454 = 11
+P256_SNOVA2454 = 12
+*/
 int ALG = 0;    // 0:Falcon-512 1:Dilithium 2:SPHINCS 3:P256_Falcon-512 4:P256-Dilithium2 5:MAYO1
 bool BYPASS = false;
 bool debug = true; // Set to true to print logs
@@ -1089,7 +1104,7 @@ void responding_thread_end(struct iphdr *iphdr, void *transport_hdr, bool is_tcp
 }
 
 void *sendQueryThread(void *ptr) {
-    if (ALG == 2) {
+    if (ALG == 6 || ALG == 7 || ALG == 8) {
         // this is to get around an issue with internal packet implementation
         // at the moment, it cannot handle 22+ fragment requests of SPHINCS+
         // so we wait for responder to build its fragment cache
@@ -1255,12 +1270,23 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                 // num_required_frags = 1 (original query) + num extra queries
 
                 if (MODE == 2) {
+                    // NOTE: make sure to calculate this correctly
                     if (ALG == 0) { // FALCON512
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 3;
                         else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
                             store->num_required_frags = 3;
-                    } else if (ALG == 1) { // DILITHIUM2
+                    } else if (ALG == 1) { // P256_FALCON512
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 4;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 4;
+                    } else if (ALG == 2) { // RSA3072_FALCON512
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 4;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 4;
+                    } else if (ALG == 3) { // DILITHIUM2
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 7;
                         else if (msg->question_section[0]->qtype == 1) {
@@ -1270,21 +1296,6 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                                 store->num_required_frags = 7;
                         } else
                             store->num_required_frags = 3;
-                    } else if (ALG == 2) { // SPHINCS+
-                        if (msg->question_section[0]->qtype == DNSKEY)
-                            store->num_required_frags = 15;
-                        else if (msg->question_section[0]->qtype == 1) {
-                            if (msg->question_section[0]->qname[0] == '_')
-                                store->num_required_frags = 7;
-                            else
-                                store->num_required_frags = 23;
-                        } else
-                            store->num_required_frags = 7;
-                    } else if (ALG == 3) { // P256_FALCON512
-                        if (msg->question_section[0]->qtype == DNSKEY)
-                            store->num_required_frags = 4;
-                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
-                            store->num_required_frags = 4;
                     } else if (ALG == 4) { // P256_DILITHIUM2
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 7;
@@ -1295,7 +1306,62 @@ uint32_t process_dns_message(struct nfq_q_handle *qh, uint32_t id,
                                 store->num_required_frags = 7;
                         } else
                             store->num_required_frags = 3;
-                    } else if (ALG == 5) { // MAYO
+                    } else if (ALG == 5) { // RSA3072_DILITHIUM2
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 7;
+                        else if (msg->question_section[0]->qtype == 1) {
+                            if (msg->question_section[0]->qname[0] == '_') // qname minimization, expecting referral
+                                store->num_required_frags = 3;
+                            else
+                                store->num_required_frags = 7;
+                        } else
+                            store->num_required_frags = 3;
+                    } else if (ALG == 6) { // SPHINCS+
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 15;
+                        else if (msg->question_section[0]->qtype == 1) {
+                            if (msg->question_section[0]->qname[0] == '_')
+                                store->num_required_frags = 7;
+                            else
+                                store->num_required_frags = 23;
+                        } else
+                            store->num_required_frags = 7;
+                    } else if (ALG == 7) { // P256_SPHINCS+
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 15;
+                        else if (msg->question_section[0]->qtype == 1) {
+                            if (msg->question_section[0]->qname[0] == '_')
+                                store->num_required_frags = 7;
+                            else
+                                store->num_required_frags = 23;
+                        } else
+                            store->num_required_frags = 7;
+                    } else if (ALG == 8) { // RSA3072_SPHINCS+
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 15;
+                        else if (msg->question_section[0]->qtype == 1) {
+                            if (msg->question_section[0]->qname[0] == '_')
+                                store->num_required_frags = 7;
+                            else
+                                store->num_required_frags = 23;
+                        } else
+                            store->num_required_frags = 7;
+                    } else if (ALG == 9) { // MAYO1
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 4;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 3;
+                    } else if (ALG == 10) { // P256_MAYO1
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 4;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 3;
+                    } else if (ALG == 11) { // SNOVA2454
+                        if (msg->question_section[0]->qtype == DNSKEY)
+                            store->num_required_frags = 4;
+                        else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
+                            store->num_required_frags = 3;
+                    } else if (ALG == 12) { // P256_SNOVA2454
                         if (msg->question_section[0]->qtype == DNSKEY)
                             store->num_required_frags = 4;
                         else if (msg->question_section[0]->qtype == 1 && msg->question_section[0]->qname[0] != '_')
@@ -1864,16 +1930,30 @@ int main(int argc, char **argv) {
             printf("Using algorithm: %s\n", argv[i]);
             if (strcmp(argv[i], "FALCON512") == 0)
                 ALG = 0;
-            else if (strcmp(argv[i], "DILITHIUM2") == 0)
-                ALG = 1;
-            else if (strcmp(argv[i], "SPHINCS+") == 0)
-                ALG = 2;
             else if (strcmp(argv[i], "P256_FALCON512") == 0)
+                ALG = 1;
+            else if (strcmp(argv[i], "RSA3072_FALCON512") == 0)
+                ALG = 2;
+            else if (strcmp(argv[i], "DILITHIUM2") == 0)
                 ALG = 3;
             else if (strcmp(argv[i], "P256_DILITHIUM2") == 0)
                 ALG = 4;
-            else if (strcmp(argv[i], "MAYO1") == 0)
+            else if (strcmp(argv[i], "RSA3072_DILITHIUM2") == 0)
                 ALG = 5;
+            else if (strcmp(argv[i], "SPHINCS+") == 0)
+                ALG = 6;
+            else if (strcmp(argv[i], "P256_SPHINCS+") == 0)
+                ALG = 7;
+            else if (strcmp(argv[i], "RSA3072_SPHINCS+") == 0)
+                ALG = 8;
+            else if (strcmp(argv[i], "MAYO1") == 0)
+                ALG = 9;
+            else if (strcmp(argv[i], "P256_MAYO1") == 0)
+                ALG = 10;
+            else if (strcmp(argv[i], "SNOVA2454") == 0)
+                ALG = 11;
+            else if (strcmp(argv[i], "P256_SNOVA2454") == 0)
+                ALG = 12;
             else {
                 printf("Algorithm not supported!");
                 exit(0);
